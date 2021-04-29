@@ -36,13 +36,14 @@ CREATE TABLE IF NOT EXISTS	`City`
 	FOREIGN KEY (CountryID)  REFERENCES Country(ID)
 );
 
--- CREATE TABLE IF NOT EXISTS `FavouriteCity`
--- (
--- 	FacebookID	VARCHAR(100) NOT NULL,
---     CityID		INT NOT NULL,
---     FOREIGN KEY (FacebookID) REFERENCES `User`(FacebookID),
--- 	FOREIGN KEY (CityID) REFERENCES `City`(ID)
--- );
+CREATE TABLE IF NOT EXISTS `FavouriteCity`
+(
+	FacebookID	VARCHAR(100) NOT NULL,
+    CityID		INT NOT NULL,
+    PRIMARY KEY(FacebookID,CityID),
+    FOREIGN KEY (FacebookID) REFERENCES `User`(FacebookID),
+	FOREIGN KEY (CityID) REFERENCES `City`(ID)
+);
 
 
 /* ============================================INSERT DATA===============================================*/
