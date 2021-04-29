@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS WeatherAsia;
-CREATE DATABASE IF NOT EXISTS WeatherAsia;
-USE WeatherAsia;
+DROP DATABASE IF EXISTS heroku_b127bd7a389e7b4;
+CREATE DATABASE IF NOT EXISTS heroku_b127bd7a389e7b4;
+USE heroku_b127bd7a389e7b4;
 CREATE TABLE IF NOT EXISTS `User`
 (
 	FacebookID 		VARCHAR(100) NOT NULL PRIMARY KEY,
@@ -36,14 +36,13 @@ CREATE TABLE IF NOT EXISTS	`City`
 	FOREIGN KEY (CountryID)  REFERENCES Country(ID)
 );
 
-CREATE TABLE IF NOT EXISTS `FavouriteCity`
-(
-	FacebookID	VARCHAR(100) NOT NULL,
-    CityID		INT NOT NULL,
-    PRIMARY KEY(FacebookID,CityID),
-    FOREIGN KEY (FacebookID) REFERENCES `User`(FacebookID),
-	FOREIGN KEY (CityID) REFERENCES `City`(ID)
-);
+-- CREATE TABLE IF NOT EXISTS `FavouriteCity`
+-- (
+-- 	FacebookID	VARCHAR(100) NOT NULL,
+--     CityID		INT NOT NULL,
+--     FOREIGN KEY (FacebookID) REFERENCES `User`(FacebookID),
+-- 	FOREIGN KEY (CityID) REFERENCES `City`(ID)
+-- );
 
 
 /* ============================================INSERT DATA===============================================*/
@@ -59,7 +58,7 @@ SELECT * FROM `Admin` WHERE `Password` = sha2("@dmin123456",256);
 SELECT * FROM `Admin`;
 */
 
-SELECT * FROM country;
+
 
 INSERT INTO 
 		`Country`(CountryName,		CapitalName,		FlagImage,			LabelName)
@@ -76,66 +75,66 @@ VALUES
 		("Singapore","Singapore","http://congtyxuatkhaulaodongsingapore.com/wp-content/uploads/2018/08/co-singapore-e1533113108841.jpg","Singapore"),
 		("Đông Timor","Dili","https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Flag_of_East_Timor.svg/300px-Flag_of_East_Timor.svg.png","Đong Timor");
 
-select * from city;
+
 INSERT INTO 
 	`City`	(CityName, CountryID, LabelName)
 VALUES		
-			("Hà Nội", 1, "Ha noi"),
-			("Hải Phòng", 1, "Hai Phong"),
-			("Hồ Chí Minh", 1, "Ho Chi Minh"),
-            ("Huế", 1, "Hue"),
-            ("Đà Nẵng", 1, "Da Nang"),
-            ("Bắc Giang", 1, "Bac Giang"),
-            ("Bandar Seri Begawan", 2, "Bandar Seri Begawan"),
-            ("Seria",2,"Seria"),
-            ("Temburong",2,"Temburong"),
-            ("Panaga",2,"Panaga"),
-            ("Tutong",2,"Tutong"),
-            ("Kuala Belait",2,"Kuala Belait"),
-            ("Phnum Penh",3,"Phnum Penh"),
-            ("Siem Reap",3,"Siem Reap"),
-            ("Battambang",3,"Battambang"),
-            ("Sihanoukville",3,"Sihanoukville"),
-            ("Kampot",3,"Kampot"),
-            ("Vientiane",4,"Vientiane"),
-            ("Pakxe",4,"Pakxe"),
-            ("Xam Nua",4,"Xam Nua"),
-            ("Phonsavan",4,"Phonsavan"),
-            ("Thakhek",4,"Thakhek"),
-            ("Jakarta",5,"Jakarta"),
-            ("Surabaya",5,"Surabaya"),
-            ("Bandung",5,"Bandung"),
-            ("Manado",5,"Manado"),
-            ("Padang",5,"Padang"),
-            ("Medan",5,"Medan"),
-            ("Kuala Lumpur",6,"Kuala Lumpur"),
-            ("Kajang",6,"Kajang"),
-            ("Klang",6,"Klang"),
-            ("Subang Jaya",6,"Subang Jaya"),
-            ("Petaling Jaya",6,"Petaling Jaya"),
-            ("Kuantan",6,"Kuantan"),
-            ("NayPyiTaw",7,"NayPyiTaw"),
-            ("Yangon",7,"Yangon"),
-            ("Mandalay",7,"Mandalay"),
-            ("Bagan",7,"Bagan"),
-            ("Mrauk-U",7,"Mrauk-U"),
-            ("Pathein",7,"Pathein"),
-            ("Manila",8,"Manila"),
-            ("Quezon",8,"Quezon"),
-            ("Caloocan",8,"Caloocan"),
-            ("Davao",8,"Davao"),
-            ("Cebu",8,"Cebu"),
-            ("Zamboanga",8,"Zamboanga"),
-            ("BangKok",9,"BangKok"),
-            ("Nonthaburi",9,"Nonthaburi"),
-            ("Chiang Mai",9,"Chiang Mai"),
-            ("Udon Thani",9,"Udon Thani"),
-            ("Khon Kaen",9,"Khon Kaen"),
-            ("Phitsanulok",9,"Phitsanulok"),
-            ("Singapore",10,"Singapore"),
-            ("Jurong Town",10,"Jurong Town"),
-            ("Choa Chu Kang",10,"Choa Chu Kang"),
-            ("Yishun",10,"Yishun"),
-            ("Pungol",10,"Pungol"),
-            ("Tampines",10,"Tampines")
+			("Hà Nội", 5, "Ha noi"),
+			("Hải Phòng", 5, "Hai Phong"),
+			("Hồ Chí Minh", 5, "Ho Chi Minh"),
+            ("Huế", 5, "Hue"),
+            ("Đà Nẵng", 5, "Da Nang"),
+            ("Bắc Giang", 5, "Bac Giang"),
+            ("Bandar Seri Begawan", 15, "Bandar Seri Begawan"),
+            ("Seria",15,"Seria"),
+            ("Temburong",15,"Temburong"),
+            ("Panaga",15,"Panaga"),
+            ("Tutong",15,"Tutong"),
+            ("Kuala Belait",15,"Kuala Belait"),
+            ("Phnum Penh",25,"Phnum Penh"),
+            ("Siem Reap",25,"Siem Reap"),
+            ("Battambang",25,"Battambang"),
+            ("Sihanoukville",25,"Sihanoukville"),
+            ("Kampot",25,"Kampot"),
+            ("Vientiane",35,"Vientiane"),
+            ("Pakxe",35,"Pakxe"),
+            ("Xam Nua",35,"Xam Nua"),
+            ("Phonsavan",35,"Phonsavan"),
+            ("Thakhek",35,"Thakhek"),
+            ("Jakarta",45,"Jakarta"),
+            ("Surabaya",45,"Surabaya"),
+            ("Bandung",45,"Bandung"),
+            ("Manado",45,"Manado"),
+            ("Padang",45,"Padang"),
+            ("Medan",45,"Medan"),
+            ("Kuala Lumpur",55,"Kuala Lumpur"),
+            ("Kajang",55,"Kajang"),
+            ("Klang",55,"Klang"),
+            ("Subang Jaya",55,"Subang Jaya"),
+            ("Petaling Jaya",55,"Petaling Jaya"),
+            ("Kuantan",55,"Kuantan"),
+            ("NayPyiTaw",65,"NayPyiTaw"),
+            ("Yangon",65,"Yangon"),
+            ("Mandalay",65,"Mandalay"),
+            ("Bagan",65,"Bagan"),
+            ("Mrauk-U",65,"Mrauk-U"),
+            ("Pathein",65,"Pathein"),
+            ("Manila",75,"Manila"),
+            ("Quezon",75,"Quezon"),
+            ("Caloocan",75,"Caloocan"),
+            ("Davao",75,"Davao"),
+            ("Cebu",75,"Cebu"),
+            ("Zamboanga",75,"Zamboanga"),
+            ("BangKok",85,"BangKok"),
+            ("Nonthaburi",85,"Nonthaburi"),
+            ("Chiang Mai",85,"Chiang Mai"),
+            ("Udon Thani",85,"Udon Thani"),
+            ("Khon Kaen",85,"Khon Kaen"),
+            ("Phitsanulok",85,"Phitsanulok"),
+            ("Singapore",95,"Singapore"),
+            ("Jurong Town",95,"Jurong Town"),
+            ("Choa Chu Kang",95,"Choa Chu Kang"),
+            ("Yishun",95,"Yishun"),
+            ("Pungol",95,"Pungol"),
+            ("Tampines",95,"Tampines")
             

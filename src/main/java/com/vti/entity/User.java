@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`User`", catalog = "WeatherAsia")
+@Table(name = "`User`", catalog = "heroku_b127bd7a389e7b4")
 public class User implements Serializable {
 private static final long serialVersionUID = 1L;
 
