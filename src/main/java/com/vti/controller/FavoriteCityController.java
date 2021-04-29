@@ -46,7 +46,7 @@ public class FavoriteCityController {
 	}
 	
 	@PostMapping()
-	public String createGroup(@RequestBody FavoriteCityDTO dto) {
+	public String createFavoriteCity(@RequestBody FavoriteCityDTO dto) {
 
 		FavoriteCityKey favoriteCityKey = new FavoriteCityKey(dto.getUserId(), dto.getCityId());
 		

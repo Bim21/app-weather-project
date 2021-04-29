@@ -7,5 +7,5 @@ import com.vti.entity.FavoriteCity;
 public interface IFavoriteCityService {
 	public List<FavoriteCity> getAllFavoriteCities();
 
-	public void createGroup(FavoriteCity favoriteCity);
+	public void createFavoriteCity(FavoriteCity favoriteCity);
 }

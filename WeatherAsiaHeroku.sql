@@ -36,13 +36,14 @@ CREATE TABLE IF NOT EXISTS	`City`
 	FOREIGN KEY (CountryID)  REFERENCES Country(ID)
 );
 
--- CREATE TABLE IF NOT EXISTS `FavouriteCity`
--- (
--- 	FacebookID	VARCHAR(100) NOT NULL,
---     CityID		INT NOT NULL,
---     FOREIGN KEY (FacebookID) REFERENCES `User`(FacebookID),
--- 	FOREIGN KEY (CityID) REFERENCES `City`(ID)
--- );
+CREATE TABLE IF NOT EXISTS `FavouriteCity`
+(
+	FacebookID	VARCHAR(100) NOT NULL,
+    CityID		INT NOT NULL,
+    primary key(FacebookID,CityID),
+    FOREIGN KEY (FacebookID) REFERENCES `User`(FacebookID),
+	FOREIGN KEY (CityID) REFERENCES `City`(ID)
+);
 
 
 /* ============================================INSERT DATA===============================================*/
@@ -50,6 +51,7 @@ INSERT INTO `Admin`
 VALUES ("nchinh407@gmail.com",			"0a696ecb97bc9eba6ae5f99660efbfd6214e805ff3b2e808bdf1b9391f84f857"),
 		("khanhdinh141@gmail.com",		"0a696ecb97bc9eba6ae5f99660efbfd6214e805ff3b2e808bdf1b9391f84f857"),
         ("khuatbatien2000@gmail.com",	"0a696ecb97bc9eba6ae5f99660efbfd6214e805ff3b2e808bdf1b9391f84f857");
+        
         /*
 INSERT `Admin`
 VALUES ("admin",sha2("@dmin123456",256));
@@ -136,5 +138,13 @@ VALUES
             ("Choa Chu Kang",95,"Choa Chu Kang"),
             ("Yishun",95,"Yishun"),
             ("Pungol",95,"Pungol"),
-            ("Tampines",95,"Tampines")
-            
+            ("Tampines",95,"Tampines");
+
+INSERT INTO `User`
+VALUES ("ABC123456",	"NguyenChinh",    "cuanuong@gmail.com",      "Hà Nội"),
+		("ABC12345678911",	"HaLan",    "cuanuong11@gmail.com",      "Hà Nội");
+	
+        
+-- INSERT INTO `FavouriteCity`
+-- VALUES ("ABC123456",			5),
+-- 		("ABC12345678911",		10);

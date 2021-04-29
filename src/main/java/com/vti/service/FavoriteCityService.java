@@ -21,7 +21,7 @@ public class FavoriteCityService implements IFavoriteCityService{
 	}
 
 	@Override
-	public void createGroup(FavoriteCity favoriteCity) {
+	public void createFavoriteCity(FavoriteCity favoriteCity) {
 		favoriteCityRepository.save(favoriteCity);
 	}
 }
