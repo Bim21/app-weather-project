@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`User`", catalog = "heroku_b127bd7a389e7b4")
+@Table(name = "`User`", catalog = "WeatherAsia")
 public class User implements Serializable {
 private static final long serialVersionUID = 1L;
 
@@ -27,8 +27,8 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "`Address`", length = 255)
 	private String address;
 	
-//	@OneToMany(mappedBy = "user")
-//	private List<FavoriteCity> favoriteCities;
+	@OneToMany(mappedBy = "user")
+	private List<FavoriteCity> favoriteCities;
 
 	public String getId() {
 		return id;
@@ -73,6 +73,13 @@ private static final long serialVersionUID = 1L;
 	public User() {
 		super();
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address +
+				 "]";
+	}
+	
 
 
 }

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`Admin`", catalog = "heroku_b127bd7a389e7b4")
+@Table(name = "`Admin`", catalog = "WeatherAsia")
 public class Admin implements Serializable {
 
 	private static final long serialVersionUID = 1L;

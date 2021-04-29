@@ -1,6 +1,7 @@
 package com.vti.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,10 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`City`", catalog = "heroku_b127bd7a389e7b4")
+@Table(name = "`City`", catalog = "WeatherAsia")
 public class City implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -31,9 +33,9 @@ public class City implements Serializable{
 	@Column(name = "LabelName", nullable = false, length = 255)
 	private String lable;
 	
-//	@OneToMany(mappedBy = "city")
-//	private List<FavoriteCity> favoriteCity;
-//	
+	@OneToMany(mappedBy = "city")
+	private List<FavoriteCity> favoriteCity;
+
 	@ManyToOne
     @JoinColumn(name = "CountryID", referencedColumnName = "id", nullable = false)
     private Country country;
@@ -53,8 +55,8 @@ public class City implements Serializable{
 
 	@Override
 	public String toString() {
-		return "City [id=" + id + ", name=" + name + ", description=" + description + ", lable=" + lable + ", country="
-				+ country + "]";
+		return "City [id=" + id + ", name=" + name + ", description=" + description + ", lable=" + lable + ", countryId="
+				+ country.getId() + "]";
 	}
 
 	public void setName(String name) {
@@ -69,16 +71,9 @@ public class City implements Serializable{
 		this.description = description;
 	}
 
-//	public List<FavoriteCity> getFavoriteCity() {
-//		return favoriteCity;
-//	}
-
-//	public void setFavoriteCity(List<FavoriteCity> favoriteCity) {
-//		this.favoriteCity = favoriteCity;
-//	}
-
-	public Country getCountry() {
-		return country;
+	
+	public int getCountryId() {
+		return country.getId();
 	}
 
 	public void setCountry(Country country) {

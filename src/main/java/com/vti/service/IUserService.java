@@ -1,5 +1,9 @@
 package com.vti.service;
 
-public interface IUserService {
 
+
+import com.vti.entity.User;
+
+public interface IUserService {
+	public User getUserById(String id);
 }
