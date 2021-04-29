@@ -56,7 +56,7 @@ public class FavoriteCityController {
 		
 		dto.setUser(userService.getUserById(dto.getUserId()));
 		
-		favoriteCityService.createGroup(dto.toEntity());
+		favoriteCityService.createFavoriteCity(dto.toEntity());
 		return "{ \"message\":"+"\"Create Successfully\"" + "}";
 
 	}
