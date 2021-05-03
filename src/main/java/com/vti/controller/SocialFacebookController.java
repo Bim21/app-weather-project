@@ -42,7 +42,7 @@ private FacebookConnectionFactory factory = new FacebookConnectionFactory("36967
 		OAuth2Parameters parames = new OAuth2Parameters(); // sử dụng lớp OAuth2Parameters để yêu cầu quyền truy cập của facebook
 		
 		// xác định vị trí máy chủ api chuyển hướng sau khi người dùng hoàn tất ủy quyền
-		parames.setRedirectUri("https://vti-aca-april-team1-api.herokuapp.com");
+		parames.setRedirectUri("https://vti-aca-april-team1-api.herokuapp.com/callback");
 		parames.setScope("email,public_profile");// phạm vi được ủy quyền
 		
 		String authenticate =  operations.buildAuthenticateUrl(parames); // tạo đường dẫn url với mã xác thực truyền vào   
