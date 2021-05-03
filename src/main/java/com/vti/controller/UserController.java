@@ -26,4 +26,10 @@ public class UserController {
 	public ResponseEntity<?> getUserById(@PathVariable(name = "id") String id) {		
 		return new ResponseEntity<User>(userService.getUserById(id), HttpStatus.OK);
 	}
+	
+	@GetMapping(value = "/exists?id={id}")
+	public ResponseEntity<Boolean> isExistsUserById(@PathVariable(name="id") String id){
+		
+		return new ResponseEntity<Boolean>(userService.isExistsUserById(id),HttpStatus.OK);
+	}
 }
