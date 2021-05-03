@@ -29,9 +29,18 @@ private static final long serialVersionUID = 1L;
 	
 //	@OneToMany(mappedBy = "user")
 //	private List<FavoriteCity> favoriteCities;
+	
+	
 
 	public String getId() {
 		return id;
+	}
+
+	public User(String id, String name, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
 	}
 
 	public void setId(String id) {
