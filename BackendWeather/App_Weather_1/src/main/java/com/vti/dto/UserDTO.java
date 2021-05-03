@@ -2,6 +2,19 @@ package com.vti.dto;
 
 import com.vti.entity.User;
 
+
+/**
+ * This class is User DTO.
+ * 
+ * @Description: .
+ * @author: Đinh Huy Khánh
+ * @create_date: 3/5/2021
+ * @version: 1.0
+ * @modifer: 
+ * @modifer_date: 
+ * @return : userProfile
+ */
+
 public class UserDTO {
 	private String id;
 	private String name;
