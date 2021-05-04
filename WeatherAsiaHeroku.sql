@@ -4,7 +4,7 @@ USE heroku_b127bd7a389e7b4;
 CREATE TABLE IF NOT EXISTS `User`
 (
 	FacebookID 		VARCHAR(100) NOT NULL PRIMARY KEY,
-    `Name`			VARCHAR(100),
+    `Name`			NVARCHAR(100),
     `Email`			VARCHAR(100) NOT NULL UNIQUE KEY,
     `Address` 		NVARCHAR(255)    
 );
