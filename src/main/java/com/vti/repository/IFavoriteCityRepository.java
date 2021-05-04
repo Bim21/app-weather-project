@@ -1,11 +1,14 @@
 package com.vti.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.vti.entity.FavoriteCity;
+import com.vti.entity.FavoriteCityKey;
+import com.vti.entity.User;
 
-public interface IFavoriteCityRepository extends JpaRepository<FavoriteCity, Integer>, JpaSpecificationExecutor<FavoriteCity> {
-	
-	
+public interface IFavoriteCityRepository extends JpaRepository<FavoriteCity, FavoriteCityKey>, JpaSpecificationExecutor<FavoriteCity> {
+	public List<FavoriteCity> findByUser(User user);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.vti.entity.FavoriteCity;
+import com.vti.entity.User;
 import com.vti.repository.IFavoriteCityRepository;
 
 @Service
@@ -23,5 +24,10 @@ public class FavoriteCityService implements IFavoriteCityService{
 	@Override
 	public void createFavoriteCity(FavoriteCity favoriteCity) {
 		favoriteCityRepository.save(favoriteCity);
+	}
+
+	@Override
+	public List<FavoriteCity> getAllFavoriteCitiesByUserId(User user) {
+		return (List<FavoriteCity>) favoriteCityRepository.findByUser(user);
 	}
 }
