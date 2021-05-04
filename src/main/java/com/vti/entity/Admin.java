@@ -6,6 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "`Admin`", catalog = "heroku_b127bd7a389e7b4")
@@ -18,6 +22,7 @@ public class Admin implements Serializable {
 	private String email;
 	
 	@Column(name = "`Password`", nullable = false, length = 255)
+	@Size(min=8)
 	private String password;
 
 	public String getEmail() {

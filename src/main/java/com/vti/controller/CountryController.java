@@ -16,7 +16,6 @@ import com.vti.service.ICountryService;
 @RestController
 @RequestMapping(value = "api/v1/country")
 @CrossOrigin("*")
-
 public class CountryController {
 	@Autowired
 	private ICountryService service;
