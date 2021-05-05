@@ -18,8 +18,8 @@ import com.vti.service.ICityService;
 
 @RestController
 @RequestMapping(value = "api/v1/cities")
-//@CrossOrigin("*")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin("*")
+
 public class CityController {
 	@Autowired
 	private ICityService service;

@@ -33,6 +33,7 @@ public class CityService implements ICityService {
 	// Search	
 	if(search != null && search != "") {
 		where = searchByField(search, "name");
+
 	
 	
 	}
@@ -46,6 +47,10 @@ public class CityService implements ICityService {
 				,list1.get(i).getDescription(),list1.get(i).getLable(),
 				countryRepository.findById(list1.get(i).getCountryId())
 				));		
+
+	}	
+		return list2;
+
 	}
 		
 	return list2;
