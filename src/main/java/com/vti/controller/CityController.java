@@ -25,25 +25,15 @@ public class CityController {
 	private ICityService service;
 	
 	@GetMapping
-	public ResponseEntity<?> getAllCities(String search){
-		
-		List<CityDTO> entities = service.getAllCities(search);
-		
+	public ResponseEntity<?> getAllCities(String search){	
+		List<CityDTO> entities = service.getAllCities(search);	
 		return new ResponseEntity<List<CityDTO>>(entities,HttpStatus.OK);
 	}
-	
-	
-	
-	
+
 	@GetMapping(value = "name/{name}")
 	public ResponseEntity<?> getCityByName(@PathVariable(name = "name") String name) {
 		return new ResponseEntity<City>(service.getCityByName(name), HttpStatus.OK);
 	}
-	
-//	@GetMapping(value = "id/{id}")
-//	public ResponseEntity<?> getCityById(@PathVariable(name = "id") int id) {
-//		return new ResponseEntity<CityDTO>(service.getCityById(id), HttpStatus.OK);
-//	}
 	
 	@GetMapping(value = "id/{id}")
 	public ResponseEntity<?> getCityById(@PathVariable(name = "id") int id) {
