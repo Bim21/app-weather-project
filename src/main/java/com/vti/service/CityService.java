@@ -1,5 +1,6 @@
 package com.vti.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,8 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import com.vti.dto.CityDTO;
 import com.vti.entity.City;
+import com.vti.entity.Country;
 import com.vti.repository.ICityRepository;
+import com.vti.repository.ICountryRepository;
 
 @Service
 public class CityService implements ICityService {
@@ -20,7 +24,10 @@ public class CityService implements ICityService {
 	@Autowired
 	private ICityRepository repository;
 	
-	public List<City> getAllCities(String search){
+	@Autowired
+	private ICountryRepository countryRepository;
+	
+	public List<CityDTO> getAllCities(String search){
 	Specification<City> where = null;
 	
 	// Search	
@@ -29,9 +36,20 @@ public class CityService implements ICityService {
 	
 	
 	}
-		
-		return (List<City>) repository.findAll(where);
+	List<City> list1 = (List<City>) repository.findAll(where);
+	
+	List<CityDTO> list2 = new ArrayList<CityDTO>();
+	// đổ list1->list2 
+	for(int i = 0;i< list1.size();i++ ) {
+		list2.add(new CityDTO(
+				list1.get(i).getId(),list1.get(i).getName()
+				,list1.get(i).getDescription(),list1.get(i).getLable(),
+				countryRepository.findById(list1.get(i).getCountryId())
+				));		
 	}
+		
+	return list2;
+}
 	
 	
 	// SearchByField
