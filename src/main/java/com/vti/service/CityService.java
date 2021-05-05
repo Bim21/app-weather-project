@@ -26,10 +26,7 @@ public class CityService implements ICityService {
 	// Search	
 	if(search != null && search != "") {
 		where = searchByField(search, "name");
-	
-	
-	}
-		
+	}	
 		return (List<City>) repository.findAll(where);
 	}
 	
