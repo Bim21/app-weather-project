@@ -12,34 +12,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vti.dto.CityDTO;
 import com.vti.entity.City;
 import com.vti.service.ICityService;
 
 @RestController
 @RequestMapping(value = "api/v1/cities")
-//@CrossOrigin("*")
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+@CrossOrigin("*")
+
 public class CityController {
 	@Autowired
 	private ICityService service;
 	
 	@GetMapping
-	public ResponseEntity<?> getAllCities(String search){
-		
-		List<City> entities = service.getAllCities(search);
-		
-		return new ResponseEntity<List<City>>(entities,HttpStatus.OK);
+	public ResponseEntity<?> getAllCities(String search){	
+		List<CityDTO> entities = service.getAllCities(search);	
+		return new ResponseEntity<List<CityDTO>>(entities,HttpStatus.OK);
 	}
-	
-//	@GetMapping(value = "name/{name}")
-//	public ResponseEntity<?> getCityByName(@PathVariable(name = "name") String name) {
-//		return new ResponseEntity<City>(service.getCityByName(name), HttpStatus.OK);
-//	}
-	
-//	@GetMapping(value = "id/{id}")
-//	public ResponseEntity<?> getCityById(@PathVariable(name = "id") int id) {
-//		return new ResponseEntity<CityDTO>(service.getCityById(id), HttpStatus.OK);
-//	}
+
+	@GetMapping(value = "name/{name}")
+	public ResponseEntity<?> getCityByName(@PathVariable(name = "name") String name) {
+		return new ResponseEntity<City>(service.getCityByName(name), HttpStatus.OK);
+	}
 	
 	@GetMapping(value = "id/{id}")
 	public ResponseEntity<?> getCityById(@PathVariable(name = "id") int id) {

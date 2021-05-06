@@ -1,6 +1,10 @@
 package com.vti.controller;
 
+import java.net.http.HttpClient.Redirect;
+import java.net.http.HttpResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
@@ -18,10 +22,12 @@ import com.vti.dto.UserDTO;
 import com.vti.service.IUserService;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://127.0.0.1:5500")
 public class SocialFacebookController {
 	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
 	private User userProfile;
+	
+	
 	@Autowired 
 	IUserService userService;
 	
@@ -46,7 +52,8 @@ public class SocialFacebookController {
 		parames.setRedirectUri("https://vti-aca-april-team1-api.herokuapp.com/callback");
 		parames.setScope("email,public_profile");// phạm vi được ủy quyền
 		
-		String authenticate =  operations.buildAuthenticateUrl(parames); // tạo đường dẫn url với mã xác thực truyền vào   
+		String authenticate =  operations.buildAuthenticateUrl(parames); // tạo đường dẫn url với mã xác thực truyền vào  
+		
 		return authenticate; 
 	}
 	
@@ -76,16 +83,18 @@ public class SocialFacebookController {
 		 userProfile = facebook.fetchObject("me",User.class,fields); // lấy ra thông tin của người dùng
 		
 		boolean existsUser = userService.isExistsUserById(userProfile.getId()); // kiểm tra user đã tồn tại chưa
-		if(!existsUser) { // nếu chưa tồn tại lưu vào db 
+		if(!existsUser)
+		{ 
+			// nếu chưa tồn tại lưu vào db 
 			UserDTO userDTO = new UserDTO(userProfile.getId(), userProfile.getName(), userProfile.getEmail()); 
 			userService.createUser(userDTO.toEntity(userDTO));
-		} 
-		
-		// chuyển hướng về trang asean weather theo đường link bên dưới
-		RedirectView redirectView = new RedirectView();
-	    redirectView.setUrl("http://aseanweather.herokuapp.com");
-	    return redirectView;
-	}
+		}
+			// chuyển hướng về trang asean weather theo đường link bên dưới
+			RedirectView redirectView = new RedirectView();
+			redirectView.setUrl("http://aseanweather.herokuapp.com");
+	    return redirectView ;
+		}
+	
 	
 
 	/**
@@ -103,6 +112,7 @@ public class SocialFacebookController {
 	public User getUserLoginFacebook() {
 		return userProfile;
 	}
+
 	
 	
 }

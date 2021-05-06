@@ -4,7 +4,7 @@ USE heroku_b127bd7a389e7b4;
 CREATE TABLE IF NOT EXISTS `User`
 (
 	FacebookID 		VARCHAR(100) NOT NULL PRIMARY KEY,
-    `Name`			VARCHAR(100),
+    `Name`			NVARCHAR(100),
     `Email`			VARCHAR(100) NOT NULL UNIQUE KEY,
     `Address` 		NVARCHAR(255)    
 );
@@ -143,8 +143,3 @@ VALUES
 INSERT INTO `User`
 VALUES ("ABC123456",	"NguyenChinh",    "cuanuong@gmail.com",      "Hà Nội"),
 		("ABC12345678911",	"HaLan",    "cuanuong11@gmail.com",      "Hà Nội");
-	
-        
--- INSERT INTO `FavouriteCity`
--- VALUES ("ABC123456",			5),
--- 		("ABC12345678911",		10);

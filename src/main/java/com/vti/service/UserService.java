@@ -27,9 +27,7 @@ public class UserService implements IUserService {
 	 * @version: 1.0
 	 * @modifer: 
 	 * @modifer_date: 
-	 * @param : email 
-	 * @param : password
-	 * @return : 
+	 * @param: id
 	 */
 	@Override
 	public boolean isExistsUserById(String id) {
@@ -46,9 +44,7 @@ public class UserService implements IUserService {
 	 * @version: 1.0
 	 * @modifer: 
 	 * @modifer_date: 
-	 * @param :  
-	 * @param : 
-	 * @return : 
+	 * @param : user
 	 */
 	@Override
 	public void createUser(User user) {

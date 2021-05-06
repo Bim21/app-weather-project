@@ -90,10 +90,6 @@ public class Country implements Serializable {
 		this.description = description;
 	}
 
-	public List<City> getCities() {
-		return cities;
-	}
-
 	public void setCities(List<City> cities) {
 		this.cities = cities;
 	}
@@ -111,7 +107,6 @@ public class Country implements Serializable {
 		this.flagImage = flagImage;
 		this.lable = lable;
 		this.description = description;
-		
 	}
 
 	@Override
