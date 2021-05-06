@@ -143,8 +143,3 @@ VALUES
 INSERT INTO `User`
 VALUES ("ABC123456",	"NguyenChinh",    "cuanuong@gmail.com",      "Hà Nội"),
 		("ABC12345678911",	"HaLan",    "cuanuong11@gmail.com",      "Hà Nội");
-	
-        
--- INSERT INTO `FavouriteCity`
--- VALUES ("ABC123456",			5),
--- 		("ABC12345678911",		10);
