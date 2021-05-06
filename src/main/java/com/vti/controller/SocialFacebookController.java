@@ -57,9 +57,8 @@ public class SocialFacebookController {
 	 * @author: Đinh Huy Khánh
 	 * @create_date: 3/5/2021
 	 * @version: 1.0
-	 * @modifer: 
-	 * @modifer_date: 
-	 * @return : userProfile
+	 * @modifer: Đinh Huy Khánh
+	 * @modifer_date: 6/5/2021
 	 */
 	@GetMapping(value="/callback")
 	public 	RedirectView callbackLogin(@RequestParam("code") String authorizationCode){
@@ -82,12 +81,24 @@ public class SocialFacebookController {
 			userService.createUser(userDTO.toEntity(userDTO));
 		} 
 		
-		
+		// chuyển hướng về trang asean weather theo đường link bên dưới
 		RedirectView redirectView = new RedirectView();
-	    redirectView.setUrl("http://fe-weather-southeast-asia.herokuapp.com");
+	    redirectView.setUrl("http://aseanweather.herokuapp.com");
 	    return redirectView;
 	}
 	
+
+	/**
+	 * This method is get User Login Facebook.
+	 * 
+	 * @Description: .
+	 * @author: Đinh Huy Khánh
+	 * @create_date: 6/5/2021
+	 * @version: 1.0
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : userProfile
+	 */
 	@GetMapping(value="/login/user")
 	public User getUserLoginFacebook() {
 		return userProfile;
