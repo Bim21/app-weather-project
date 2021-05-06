@@ -1,6 +1,10 @@
 package com.vti.controller;
 
+import java.net.http.HttpClient.Redirect;
+import java.net.http.HttpResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
@@ -12,15 +16,16 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.vti.dto.UserDTO;
 import com.vti.service.IUserService;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin("http://127.0.0.1:5500")
 public class SocialFacebookController {
-private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
-	
+	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
+	private User userProfile;
 	@Autowired 
 	IUserService userService;
 	
@@ -42,10 +47,11 @@ private FacebookConnectionFactory factory = new FacebookConnectionFactory("36967
 		OAuth2Parameters parames = new OAuth2Parameters(); // sử dụng lớp OAuth2Parameters để yêu cầu quyền truy cập của facebook
 		
 		// xác định vị trí máy chủ api chuyển hướng sau khi người dùng hoàn tất ủy quyền
-		parames.setRedirectUri("https://vti-aca-april-team1-api.herokuapp.com/callback");
+		parames.setRedirectUri("http://localhost:8080/callback");
 		parames.setScope("email,public_profile");// phạm vi được ủy quyền
 		
-		String authenticate =  operations.buildAuthenticateUrl(parames); // tạo đường dẫn url với mã xác thực truyền vào   
+		String authenticate =  operations.buildAuthenticateUrl(parames); // tạo đường dẫn url với mã xác thực truyền vào  
+		
 		return authenticate; 
 	}
 	
@@ -61,26 +67,33 @@ private FacebookConnectionFactory factory = new FacebookConnectionFactory("36967
 	 * @return : userProfile
 	 */
 	@GetMapping(value="/callback")
-	public 	User callbackLogin(@RequestParam("code") String authorizationCode){
+	public 	RedirectView callbackLogin(@RequestParam("code") String authorizationCode){
 		
 		OAuth2Operations operations = factory.getOAuthOperations();
 		
 		// trả về thông tin quyền đăng nhập của người dùng
-		AccessGrant accessToken = operations.exchangeForAccess(authorizationCode,"https://vti-aca-april-team1-api.herokuapp.com/callback",null );
+		AccessGrant accessToken = operations.exchangeForAccess(authorizationCode,"http://localhost:8080/callback",null );
 		
 		// tạo 1 kết nối đến facebook bằng acceessToken
 		Connection<Facebook> connection = factory.createConnection(accessToken);
 		Facebook facebook = connection.getApi();
 		
 		String[] fields = {"id","email","name","address"};// tên cột cần lấy
-		User userProfile = facebook.fetchObject("me",User.class,fields); // lấy ra thông tin của người dùng
+		 userProfile = facebook.fetchObject("me",User.class,fields); // lấy ra thông tin của người dùng
 		
 		boolean existsUser = userService.isExistsUserById(userProfile.getId()); // kiểm tra user đã tồn tại chưa
 		if(!existsUser) { // nếu chưa tồn tại lưu vào db 
 			UserDTO userDTO = new UserDTO(userProfile.getId(), userProfile.getName(), userProfile.getEmail()); 
 			userService.createUser(userDTO.toEntity(userDTO));
-		} 
-		// trả về json thông tin user 
+		}
+		
+		 	RedirectView redirectView = new RedirectView();
+		    redirectView.setUrl("http://fe-weather-southeast-asia.herokuapp.com");
+		    return redirectView;
+	}
+	
+	@GetMapping(value="/user")
+	public User getUser() {
 		return userProfile;
 	}
 }
