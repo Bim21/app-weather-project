@@ -1,10 +1,7 @@
 package com.vti.controller;
 
-import java.net.http.HttpClient.Redirect;
-import java.net.http.HttpResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.social.connect.Connection;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
@@ -22,7 +19,7 @@ import com.vti.dto.UserDTO;
 import com.vti.service.IUserService;
 
 @RestController
-@CrossOrigin("http://127.0.0.1:5500")
+@CrossOrigin("*")
 public class SocialFacebookController {
 	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
 	private User userProfile;
@@ -37,7 +34,7 @@ public class SocialFacebookController {
 	 * @Description: .
 	 * @author: Đinh Huy Khánh
 	 * @create_date: 3/5/2021
-	 * @version: 1.0
+	 * @version: 1
 	 * @modifer: 
 	 * @modifer_date: 
 	 * @return : authenticate
@@ -63,9 +60,9 @@ public class SocialFacebookController {
 	 * @Description: .
 	 * @author: Đinh Huy Khánh
 	 * @create_date: 3/5/2021
-	 * @version: 1.0
-	 * @modifer: Đinh Huy Khánh
-	 * @modifer_date: 6/5/2021
+	 * @version: 1.1
+	 * @modifer: 
+	 * @modifer_date: 
 	 */
 	@GetMapping(value="/callback")
 	public 	RedirectView callbackLogin(@RequestParam("code") String authorizationCode){
