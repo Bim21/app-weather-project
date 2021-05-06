@@ -26,6 +26,8 @@ import com.vti.service.IUserService;
 public class SocialFacebookController {
 	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
 	private User userProfile;
+	
+	
 	@Autowired 
 	IUserService userService;
 	
@@ -47,7 +49,7 @@ public class SocialFacebookController {
 		OAuth2Parameters parames = new OAuth2Parameters(); // sử dụng lớp OAuth2Parameters để yêu cầu quyền truy cập của facebook
 		
 		// xác định vị trí máy chủ api chuyển hướng sau khi người dùng hoàn tất ủy quyền
-		parames.setRedirectUri("http://localhost:8080/callback");
+		parames.setRedirectUri("https://vti-aca-april-team1-api.herokuapp.com/callback");
 		parames.setScope("email,public_profile");// phạm vi được ủy quyền
 		
 		String authenticate =  operations.buildAuthenticateUrl(parames); // tạo đường dẫn url với mã xác thực truyền vào  
@@ -62,9 +64,8 @@ public class SocialFacebookController {
 	 * @author: Đinh Huy Khánh
 	 * @create_date: 3/5/2021
 	 * @version: 1.0
-	 * @modifer: 
-	 * @modifer_date: 
-	 * @return : userProfile
+	 * @modifer: Đinh Huy Khánh
+	 * @modifer_date: 6/5/2021
 	 */
 	@GetMapping(value="/callback")
 	public 	RedirectView callbackLogin(@RequestParam("code") String authorizationCode){
@@ -72,7 +73,7 @@ public class SocialFacebookController {
 		OAuth2Operations operations = factory.getOAuthOperations();
 		
 		// trả về thông tin quyền đăng nhập của người dùng
-		AccessGrant accessToken = operations.exchangeForAccess(authorizationCode,"http://localhost:8080/callback",null );
+		AccessGrant accessToken = operations.exchangeForAccess(authorizationCode,"https://vti-aca-april-team1-api.herokuapp.com/callback",null );
 		
 		// tạo 1 kết nối đến facebook bằng acceessToken
 		Connection<Facebook> connection = factory.createConnection(accessToken);
@@ -82,18 +83,36 @@ public class SocialFacebookController {
 		 userProfile = facebook.fetchObject("me",User.class,fields); // lấy ra thông tin của người dùng
 		
 		boolean existsUser = userService.isExistsUserById(userProfile.getId()); // kiểm tra user đã tồn tại chưa
-		if(!existsUser) { // nếu chưa tồn tại lưu vào db 
+		if(!existsUser)
+		{ 
+			// nếu chưa tồn tại lưu vào db 
 			UserDTO userDTO = new UserDTO(userProfile.getId(), userProfile.getName(), userProfile.getEmail()); 
 			userService.createUser(userDTO.toEntity(userDTO));
 		}
-		
-		 	RedirectView redirectView = new RedirectView();
-		    redirectView.setUrl("http://fe-weather-southeast-asia.herokuapp.com");
-		    return redirectView;
-	}
+			// chuyển hướng về trang asean weather theo đường link bên dưới
+			RedirectView redirectView = new RedirectView();
+			redirectView.setUrl("http://aseanweather.herokuapp.com");
+	    return redirectView ;
+		}
 	
-	@GetMapping(value="/user")
-	public User getUser() {
+	
+
+	/**
+	 * This method is get User Login Facebook.
+	 * 
+	 * @Description: .
+	 * @author: Đinh Huy Khánh
+	 * @create_date: 6/5/2021
+	 * @version: 1.0
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : userProfile
+	 */
+	@GetMapping(value="/login/user")
+	public User getUserLoginFacebook() {
 		return userProfile;
 	}
+
+	
+	
 }
