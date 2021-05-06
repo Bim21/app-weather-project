@@ -21,7 +21,7 @@ import com.vti.service.IAdminService;
 
 @RestController
 @RequestMapping(value="api/v1/admin")
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin("*")
 @Validated
 public class AdminController {
 	
