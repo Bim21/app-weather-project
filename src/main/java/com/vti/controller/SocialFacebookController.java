@@ -22,7 +22,7 @@ import com.vti.service.IUserService;
 @CrossOrigin("*")
 public class SocialFacebookController {
 	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
-	private User userProfile;
+	private User userProfile=null;
 	
 	
 	@Autowired 
