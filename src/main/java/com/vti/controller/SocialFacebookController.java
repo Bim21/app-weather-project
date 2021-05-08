@@ -88,7 +88,7 @@ public class SocialFacebookController {
 		}
 			// chuyển hướng về trang asean weather theo đường link bên dưới
 			RedirectView redirectView = new RedirectView();
-			redirectView.setUrl("http://localhost:3000");
+			redirectView.setUrl("http://aseanweather.herokuapp.com/");
 	    return redirectView ;
 		}
 	
