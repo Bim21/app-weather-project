@@ -23,7 +23,7 @@ import com.vti.service.IUserService;
 public class SocialFacebookController {
 	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
 	private User userProfile;
-	
+	 
 	
 	@Autowired 
 	IUserService userService;
@@ -41,7 +41,7 @@ public class SocialFacebookController {
 	 */
 	@GetMapping(value ="/auth/facebook")
 	public String loginFacebook() {
-		
+		userProfile = null;
 		OAuth2Operations operations =  factory.getOAuthOperations();
 		OAuth2Parameters parames = new OAuth2Parameters(); // sử dụng lớp OAuth2Parameters để yêu cầu quyền truy cập của facebook
 		
@@ -66,7 +66,7 @@ public class SocialFacebookController {
 	 */
 	@GetMapping(value="/callback")
 	public 	RedirectView callbackLogin(@RequestParam("code") String authorizationCode){
-		
+	
 		OAuth2Operations operations = factory.getOAuthOperations();
 		
 		// trả về thông tin quyền đăng nhập của người dùng
@@ -88,7 +88,7 @@ public class SocialFacebookController {
 		}
 			// chuyển hướng về trang asean weather theo đường link bên dưới
 			RedirectView redirectView = new RedirectView();
-			redirectView.setUrl("http://aseanweather.herokuapp.com");
+			redirectView.setUrl("http://localhost:3000");
 	    return redirectView ;
 		}
 	
@@ -107,9 +107,7 @@ public class SocialFacebookController {
 	 */
 	@GetMapping(value="/login/user")
 	public User getUserLoginFacebook() {
+		
 		return userProfile;
 	}
-
-	
-	
 }
