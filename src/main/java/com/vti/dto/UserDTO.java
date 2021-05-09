@@ -14,12 +14,21 @@ import com.vti.entity.User;
  * @return : userProfile
  */
 public class UserDTO {
+	
 	private String id;
 	private String name;
 	private String email;
+	private String password;
 	
 	
-	
+	public UserDTO(String id, String name, String email, String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+	}
+
 	public UserDTO(String id, String name, String email) {
 		super();
 		this.id = id;
