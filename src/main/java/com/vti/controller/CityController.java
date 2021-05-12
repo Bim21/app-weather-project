@@ -26,8 +26,8 @@ public class CityController {
 	
 	@GetMapping
 	public ResponseEntity<?> getAllCities(String search){	
-		List<CityDTO> entities = service.getAllCities(search);	
-		return new ResponseEntity<List<CityDTO>>(entities,HttpStatus.OK);
+		List<City> entities = service.getAllCities(search);	
+		return new ResponseEntity<List<City>>(entities,HttpStatus.OK);
 	}
 
 	@GetMapping(value = "name/{name}")

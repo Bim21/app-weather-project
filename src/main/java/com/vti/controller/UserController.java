@@ -32,4 +32,6 @@ public class UserController {
 		
 		return new ResponseEntity<Boolean>(userService.isExistsUserById(id),HttpStatus.OK);
 	}
+	
+	
 }
