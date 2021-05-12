@@ -11,4 +11,6 @@ public interface IFavoriteCityService {
 	public void createFavoriteCity(FavoriteCity favoriteCity);
 	
 	public List<FavoriteCity> getAllFavoriteCitiesByUserId(User user);
+
+	public void deleteFavoriteCity(String idUser, Integer idCity);
 }

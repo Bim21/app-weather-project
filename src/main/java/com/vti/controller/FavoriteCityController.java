@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -69,5 +70,11 @@ public class FavoriteCityController {
 		favoriteCityService.createFavoriteCity(dto.toEntity());
 		return "{ \"message\":"+"\"Create Successfully\"" + "}";
 
+	}
+	
+	@DeleteMapping(value = "delete/idUser={idUser},idCity={idCity}")
+	public ResponseEntity<?> deleteFavoriteCity(@PathVariable(name = "idUser") String idUser,@PathVariable Integer idCity) {
+		favoriteCityService.deleteFavoriteCity(idUser,idCity);
+		return new ResponseEntity<String>("Delete successfully!", HttpStatus.OK);
 	}
 }

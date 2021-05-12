@@ -11,4 +11,11 @@ import com.vti.entity.User;
 
 public interface IFavoriteCityRepository extends JpaRepository<FavoriteCity, FavoriteCityKey>, JpaSpecificationExecutor<FavoriteCity> {
 	public List<FavoriteCity> findByUser(User user);
+
+	public void deleteByFavoriteCityId(FavoriteCityKey favoriteCityKey);
+
+//	public void deleteById(FavoriteCity favoriteCity);
+	
+//	public void deleteByFavoriteCityId(FavoriteCityKey favoriteCityKey);
+
 }

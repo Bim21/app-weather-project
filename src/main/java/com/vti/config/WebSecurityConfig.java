@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 	protected void configure(HttpSecurity http) throws Exception {
 		// TODO Auto-generated method stub
 		http.cors().and().csrf().disable()
-		.authorizeRequests().antMatchers("/auth/facebook","/api/v1/cities","/api/v1/countries").permitAll()
+		.authorizeRequests().antMatchers("/auth/facebook","/api/v1/cities","/api/v1/countries","/api/v1/favoriteCities","/api/v1/favoriteCities/userId/{id}","/api/v1/favoriteCities/delete/idUser={idUser},idCity={idCity}").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		.sessionManagement()
