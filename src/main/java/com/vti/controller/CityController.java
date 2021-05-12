@@ -18,7 +18,7 @@ import com.vti.service.ICityService;
 
 @RestController
 @RequestMapping(value = "api/v1/cities")
-@CrossOrigin("*")
+@CrossOrigin
 
 public class CityController {
 	@Autowired

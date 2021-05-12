@@ -26,7 +26,7 @@ import com.vti.service.IUserService;
 
 @RestController
 @RequestMapping(value = "api/v1/favoriteCities")
-@CrossOrigin("*")
+@CrossOrigin
 public class FavoriteCityController {
 
 	@Autowired

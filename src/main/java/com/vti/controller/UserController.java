@@ -19,7 +19,7 @@ import com.vti.service.IUserService;
 
 @RestController
 @RequestMapping(value = "api/v1/users")
-@CrossOrigin("*")
+@CrossOrigin
 public class UserController {
 	@Autowired
 	private IUserService userService;
