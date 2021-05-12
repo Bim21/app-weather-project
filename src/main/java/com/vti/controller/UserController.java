@@ -19,7 +19,7 @@ import com.vti.service.IUserService;
 
 @RestController
 @RequestMapping(value = "api/v1/users")
-@CrossOrigin("https://aseanweather.herokuapp.com")
+@CrossOrigin("*")
 public class UserController {
 	@Autowired
 	private IUserService userService;

@@ -18,8 +18,7 @@ import com.vti.service.ICityService;
 
 @RestController
 @RequestMapping(value = "api/v1/cities")
-@CrossOrigin("https://aseanweather.herokuapp.com")
-
+@CrossOrigin("*")
 public class CityController {
 	@Autowired
 	private ICityService service;
