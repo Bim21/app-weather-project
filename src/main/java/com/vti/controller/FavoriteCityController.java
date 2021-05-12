@@ -26,7 +26,7 @@ import com.vti.service.IUserService;
 
 @RestController
 @RequestMapping(value = "api/v1/favoriteCities")
-@CrossOrigin
+@CrossOrigin("https://aseanweather.herokuapp.com")
 public class FavoriteCityController {
 
 	@Autowired

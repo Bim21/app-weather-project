@@ -38,7 +38,7 @@ import com.vti.utils.ResponseJwt;
 import com.vti.utils.TokenDTO;
 
 @RestController
-@CrossOrigin
+@CrossOrigin("https://aseanweather.herokuapp.com")
 public class SocialFacebookController {
 //	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
 //	private User userProfile;

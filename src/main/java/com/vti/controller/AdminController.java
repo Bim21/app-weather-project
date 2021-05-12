@@ -21,7 +21,7 @@ import com.vti.service.IAdminService;
 
 @RestController
 @RequestMapping(value="api/v1/admin")
-@CrossOrigin
+@CrossOrigin("https://aseanweather.herokuapp.com")
 @Validated
 public class AdminController {
 	

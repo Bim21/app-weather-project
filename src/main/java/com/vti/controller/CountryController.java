@@ -15,7 +15,7 @@ import com.vti.service.ICountryService;
 
 @RestController
 @RequestMapping(value = "api/v1/countries")
-@CrossOrigin
+@CrossOrigin("https://aseanweather.herokuapp.com")
 public class CountryController {
 	@Autowired
 	private ICountryService service;
