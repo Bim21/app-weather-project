@@ -2,7 +2,6 @@ package com.vti.service;
 
 import java.util.List;
 
-import com.vti.dto.CityDTO;
 import com.vti.entity.City;
 
 public interface ICityService {

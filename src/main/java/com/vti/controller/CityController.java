@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.vti.dto.CityDTO;
 import com.vti.entity.City;
 import com.vti.service.ICityService;
 

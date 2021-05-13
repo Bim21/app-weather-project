@@ -1,6 +1,5 @@
 package com.vti.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -12,20 +11,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import com.vti.dto.CityDTO;
 import com.vti.entity.City;
-import com.vti.entity.Country;
 import com.vti.repository.ICityRepository;
-import com.vti.repository.ICountryRepository;
 
 @Service
 public class CityService implements ICityService {
 
 	@Autowired
 	private ICityRepository repository;
-	
-	@Autowired
-	private ICountryRepository countryRepository;
+
 	
 	public List<City> getAllCities(String search){
 	Specification<City> where = null;

@@ -6,10 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Table(name = "`Admin`", catalog = "heroku_b127bd7a389e7b4")

@@ -15,10 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.dto.FavoriteCityDTO;
-import com.vti.entity.City;
 import com.vti.entity.FavoriteCity;
 import com.vti.entity.FavoriteCityKey;
-import com.vti.entity.User;
 import com.vti.service.ICityService;
 import com.vti.service.IFavoriteCityService;
 import com.vti.service.IUserService;
