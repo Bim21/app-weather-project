@@ -40,9 +40,7 @@ import com.vti.utils.TokenDTO;
 @RestController
 @CrossOrigin("*")
 public class SocialFacebookController {
-//	private FacebookConnectionFactory factory = new FacebookConnectionFactory("369670134345835", "570606df435a940368c786d59a2dae4f");
-//	private User userProfile;
-	
+
 	@Autowired
 	private PasswordEncoder passwrodEncoder;
 	
@@ -102,26 +100,6 @@ public class SocialFacebookController {
 		}
 		return result;
 	}
-
-	
-
-//	/**
-//	 * This method is get User Login Facebook.
-//	 * 
-//	 * @Description: .
-//	 * @author: Đinh Huy Khánh
-//	 * @create_date: 6/5/2021
-//	 * @version: 1.0
-//	 * @modifer: 
-//	 * @modifer_date: 
-//	 * @return : userProfile
-//	 */
-//	@GetMapping(value="/login/user")
-//	public User getUserLoginFacebook() {
-//		
-//		return userProfile;
-//	}
-	
 	
 	
 	private String generateTokenFace(String id) {
