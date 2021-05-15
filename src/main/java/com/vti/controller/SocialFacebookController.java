@@ -79,7 +79,8 @@ public class SocialFacebookController {
 		Facebook facebook = new FacebookTemplate(token.getToken());
 		String[] fields = {"id","email","name","address"};// tên cột cần lấy
 		User user = facebook.fetchObject("me", User.class,fields);
-		if(userRepository.existsById(user.getId())) {
+		
+		if(!userRepository.existsById(user.getId())) {
 			com.vti.entity.User entity = new com.vti.entity.User();
 			entity.setId(user.getId());
 			entity.setEmail(user.getEmail());
@@ -96,7 +97,7 @@ public class SocialFacebookController {
 			result.setData(map);
 			result.setMessage("Success");
 		}else {
-			result.setMessage("Fail");
+			result.setMessage("Faild");
 		}
 		return result;
 	}
