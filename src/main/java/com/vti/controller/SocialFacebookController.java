@@ -7,30 +7,30 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.authentication.AuthenticationManager;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.social.connect.Connection;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.social.connect.Connection;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
 import org.springframework.social.facebook.api.impl.FacebookTemplate;
-import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-import org.springframework.social.oauth2.AccessGrant;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Parameters;
+//import org.springframework.social.facebook.connect.FacebookConnectionFactory;
+//import org.springframework.social.oauth2.AccessGrant;
+//import org.springframework.social.oauth2.OAuth2Operations;
+//import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
+//import org.springframework.web.servlet.view.RedirectView;
 
-import com.vti.dto.UserDTO;
+//import com.vti.dto.UserDTO;
 import com.vti.repository.IUserRepository;
 import com.vti.service.IUserService;
 import com.vti.utils.JwtUtil;
@@ -41,11 +41,11 @@ import com.vti.utils.TokenDTO;
 @CrossOrigin("*")
 public class SocialFacebookController {
 
-	@Autowired
-	private PasswordEncoder passwrodEncoder;
-	
-	 @Autowired
-	    private AuthenticationManager authenticationManager;
+//	@Autowired
+//	private PasswordEncoder passwrodEncoder;
+//	
+//	 @Autowired
+//	    private AuthenticationManager authenticationManager;
 
 	    @Autowired
 	    private JwtUtil jwtUtil;
@@ -78,15 +78,16 @@ public class SocialFacebookController {
 		Facebook facebook = new FacebookTemplate(token.getToken());
 		String[] fields = {"id","email","name","address"};// tên cột cần lấy
 		User user = facebook.fetchObject("me", User.class,fields);
-		if(userService.isExistsUserById(user.getId())) {
-			com.vti.entity.User entity = new com.vti.entity.User();
-			entity.setId(user.getId());
-			entity.setEmail(user.getEmail());
-//			entity.setAddress(user.getAddress().getCountry());
-			entity.setName(user.getName());
-			userService.createUser(entity);
+		
+		com.vti.entity.User entity = new com.vti.entity.User();
+		entity.setId(user.getId());
+		entity.setEmail(user.getEmail());
+		entity.setName(user.getName());
+		
+		if(!userRepository.existsById(user.getId())) {
+			userRepository.save(entity);
 		}
-		com.vti.entity.User entity = userRepository.findById(user.getId());
+		
 		if(Objects.nonNull(entity)) {
 			Map<String, Object> map = new HashMap<>();
 			String jwt = generateTokenFace(entity.getId());
