@@ -7,30 +7,16 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-//import org.springframework.security.authentication.AuthenticationManager;
-//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-//import org.springframework.security.core.Authentication;
-//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-//import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.social.connect.Connection;
 import org.springframework.social.facebook.api.Facebook;
 import org.springframework.social.facebook.api.User;
 import org.springframework.social.facebook.api.impl.FacebookTemplate;
-//import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-//import org.springframework.social.oauth2.AccessGrant;
-//import org.springframework.social.oauth2.OAuth2Operations;
-//import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.web.bind.annotation.CrossOrigin;
-//import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.servlet.view.RedirectView;
 
-//import com.vti.dto.UserDTO;
 import com.vti.repository.IUserRepository;
 import com.vti.service.IUserService;
 import com.vti.utils.JwtUtil;
@@ -41,26 +27,17 @@ import com.vti.utils.TokenDTO;
 @CrossOrigin("*")
 public class SocialFacebookController {
 
-//	@Autowired
-//	private PasswordEncoder passwrodEncoder;
-//	
-//	 @Autowired
-//	    private AuthenticationManager authenticationManager;
-
 	    @Autowired
 	    private JwtUtil jwtUtil;
 
 	    @Autowired
 	    @Qualifier("userDetailsService")
 	    private UserDetailsService  userDetailsService;
-	    
-	    @Autowired
-	    private IUserRepository userRepository;
 	
+	    @Autowired 
+	    private IUserService userService;
 	 
 	
-	@Autowired 
-	IUserService userService;
 	
 	/**
 	 * This method is login Facebook.
@@ -75,23 +52,28 @@ public class SocialFacebookController {
 	 */	
 	@PostMapping(value ="/auth/facebook")
 	public ResponseJwt loginFacebook(@RequestBody TokenDTO token) {
-		ResponseJwt result = new ResponseJwt();
-		Facebook facebook = new FacebookTemplate(token.getToken());
-		String[] fields = {"id","email","name","address"};// tên cột cần lấy
-		User user = facebook.fetchObject("me", User.class,fields);
+		ResponseJwt result = new ResponseJwt(); // dùng để trả về kết quả JSON
 		
+		
+		Facebook facebook = new FacebookTemplate(token.getToken()); // Tạo 1 phiên bản mới mã xác thực của facebook gửi về
+		String[] fields = {"id","email","name","address"};// tên cột cần lấy
+		User user = facebook.fetchObject("me", User.class,fields); // call api
+		
+		// lấy những thông tin api cần thiết mà facebook gửi về
 		com.vti.entity.User entity = new com.vti.entity.User();
 		entity.setId(user.getId());
 		entity.setEmail(user.getEmail());
 		entity.setName(user.getName());
 		
-		if(!userRepository.existsById(user.getId())) {
-			userRepository.save(entity);
+		// nếu user không tồn tại thì lưu vào DB
+		if(!userService.isExistsUserById(user.getId())) {
+			userService.createUser(entity);
 		}
 		
+		/* điều kiên entity khác null thì tạo json và trả về FE ngược lại thì thông báo FE biết là đã thất bại */
 		if(Objects.nonNull(entity)) {
 			Map<String, Object> map = new HashMap<>();
-			String jwt = generateTokenFace(entity.getId());
+			String jwt = generateTokenFace(entity.getId()); // tạo token để sau này có thể dùng để xác thực khi call api
 			map.put("jwt", jwt);
 			map.put("data", entity);
 			result.setData(map);
