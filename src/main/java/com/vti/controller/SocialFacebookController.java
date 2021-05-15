@@ -52,23 +52,28 @@ public class SocialFacebookController {
 	 */	
 	@PostMapping(value ="/auth/facebook")
 	public ResponseJwt loginFacebook(@RequestBody TokenDTO token) {
-		ResponseJwt result = new ResponseJwt();
-		Facebook facebook = new FacebookTemplate(token.getToken());
-		String[] fields = {"id","email","name","address"};// tên cột cần lấy
-		User user = facebook.fetchObject("me", User.class,fields);
+		ResponseJwt result = new ResponseJwt(); // dùng để trả về kết quả JSON
 		
+		
+		Facebook facebook = new FacebookTemplate(token.getToken()); // Tạo 1 phiên bản mới mã xác thực của facebook gửi về
+		String[] fields = {"id","email","name","address"};// tên cột cần lấy
+		User user = facebook.fetchObject("me", User.class,fields); // call api
+		
+		// lấy những thông tin api cần thiết mà facebook gửi về
 		com.vti.entity.User entity = new com.vti.entity.User();
 		entity.setId(user.getId());
 		entity.setEmail(user.getEmail());
 		entity.setName(user.getName());
 		
+		// nếu user không tồn tại thì lưu vào DB
 		if(!userService.isExistsUserById(user.getId())) {
 			userService.createUser(entity);
 		}
 		
+		/* điều kiên entity khác null thì tạo json và trả về FE ngược lại thì thông báo FE biết là đã thất bại */
 		if(Objects.nonNull(entity)) {
 			Map<String, Object> map = new HashMap<>();
-			String jwt = generateTokenFace(entity.getId());
+			String jwt = generateTokenFace(entity.getId()); // tạo token để sau này có thể dùng để xác thực khi call api
 			map.put("jwt", jwt);
 			map.put("data", entity);
 			result.setData(map);
