@@ -80,7 +80,7 @@ public class SocialFacebookController {
 		String[] fields = {"id","email","name","address"};// tên cột cần lấy
 		User user = facebook.fetchObject("me", User.class,fields);
 		
-		if(userRepository.existsById(user.getId())) {
+		if(!userRepository.existsById(user.getId())) {
 			com.vti.entity.User entity = new com.vti.entity.User();
 			entity.setId(user.getId());
 			entity.setEmail(user.getEmail());
