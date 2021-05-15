@@ -97,7 +97,7 @@ public class SocialFacebookController {
 			result.setData(map);
 			result.setMessage("Success");
 		}else {
-			result.setMessage("Faild");
+			result.setMessage("Fail");
 		}
 		return result;
 	}
