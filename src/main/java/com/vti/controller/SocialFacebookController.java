@@ -54,13 +54,12 @@ public class SocialFacebookController {
 	    @Qualifier("userDetailsService")
 	    private UserDetailsService  userDetailsService;
 	    
-	    @Autowired
-	    private IUserRepository userRepository;
-	
-	 
+//	    @Autowired
+//	    private IUserRepository userRepository;
+	    
 	
 	@Autowired 
-	IUserService userService;
+	private IUserService userService;
 	
 	/**
 	 * This method is login Facebook.
@@ -79,13 +78,13 @@ public class SocialFacebookController {
 		Facebook facebook = new FacebookTemplate(token.getToken());
 		String[] fields = {"id","email","name","address"};// tên cột cần lấy
 		User user = facebook.fetchObject("me", User.class,fields);
-		if(userRepository.existsById(user.getId())) {
+		if(userService.isExistsUserById(user.getId())) {
 			com.vti.entity.User entity = new com.vti.entity.User();
 			entity.setId(user.getId());
 			entity.setEmail(user.getEmail());
 //			entity.setAddress(user.getAddress().getCountry());
 			entity.setName(user.getName());
-			userRepository.save(entity);
+			userService.createUser(entity);
 		}
 		com.vti.entity.User entity = userRepository.findById(user.getId());
 		if(Objects.nonNull(entity)) {
