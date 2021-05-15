@@ -80,15 +80,15 @@ public class SocialFacebookController {
 		String[] fields = {"id","email","name","address"};// tên cột cần lấy
 		User user = facebook.fetchObject("me", User.class,fields);
 		
+		com.vti.entity.User entity = new com.vti.entity.User();
+		entity.setId(user.getId());
+		entity.setEmail(user.getEmail());
+		entity.setName(user.getName());
+		
 		if(!userRepository.existsById(user.getId())) {
-			com.vti.entity.User entity = new com.vti.entity.User();
-			entity.setId(user.getId());
-			entity.setEmail(user.getEmail());
-//			entity.setAddress(user.getAddress().getCountry());
-			entity.setName(user.getName());
 			userRepository.save(entity);
 		}
-		com.vti.entity.User entity = userRepository.findById(user.getId());
+		
 		if(Objects.nonNull(entity)) {
 			Map<String, Object> map = new HashMap<>();
 			String jwt = generateTokenFace(entity.getId());
