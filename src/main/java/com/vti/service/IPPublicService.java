@@ -24,4 +24,10 @@ public class IPPublicService implements IIPPublicService {
 		return repository.save(entity);
 	}
 
+	@Override
+	public Long countByIpPublic() {
+		// TODO Auto-generated method stub
+		return repository.countByIpPublic();
+	}
+
 }
