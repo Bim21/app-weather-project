@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.entity.Admin;
 import com.vti.service.IAdminService;
+import com.vti.utils.ResponseJwt;
 
 @RestController
 @RequestMapping(value="api/v1/admin")
@@ -35,20 +36,21 @@ public class AdminController {
 	 */
 	
 	@PostMapping(value="/login")
-	public Map<String,String> loginAdmin(@RequestBody Admin admin){
-			
+	public ResponseJwt loginAdmin(@RequestBody Admin admin){
+			ResponseJwt result = new ResponseJwt();
 			HashMap<String, String> map = new HashMap<>();
+			
 			if(!service.isAdminExistsByEmailAndPassword(admin.getEmail(), admin.getPassword())) {
 				map.put("email",admin.getEmail());
-				map.put("status", "200");
-				map.put("message", "Account does not exist");
-				return map;
+				result.setData(map);
+				result.setMessage("Account does not exist");
+				return result;
 			}
-			map.put("email",admin.getEmail());
-			map.put("status", "200");
-			map.put("message", "Success");
 			
-			return map;
+			map.put("email",admin.getEmail());
+			result.setData(map);
+			result.setMessage("Success");
+			return result;
 	}
 	
 }

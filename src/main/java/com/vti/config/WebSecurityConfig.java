@@ -60,7 +60,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 					"/api/v1/favoriteCities/userId/{id}",
 					"/api/v1/favoriteCities/delete/idUser={idUser},idCity={idCity}",
 					"/api/v1/users",
-					"/api/v1/admin/login")
+					"/api/v1/admin/login",
+					"/api/v1/ip/count")
 		.permitAll()
 		.anyRequest().authenticated()
 		.and()
