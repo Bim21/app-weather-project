@@ -1,12 +1,14 @@
 package com.vti.controller;
 
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,18 +24,21 @@ public class IPPublicController {
 	@Autowired 
 	private IIPPublicService service;
 	
-	@PostMapping(value="/count")
-	public ResponseJwt isTotalViews(@RequestBody IPPublic ip) {
+	@GetMapping(value="/count")
+	public ResponseJwt isTotalViews() throws UnknownHostException {
+		
 		ResponseJwt result = new ResponseJwt();
 		Map<String, Object> map = new HashMap<>();
+		InetAddress address = (InetAddress) InetAddress.getLocalHost();
 		
+		String ipAddress = address.getHostAddress();
 		
-		if(!service.isExistsByIpPublic(ip.getIpPublic())) {
-			IPPublic entity = new IPPublic(ip.getIpPublic());
+		if(!service.isExistsByIpPublic(ipAddress)) {
+			IPPublic entity = new IPPublic(ipAddress);
 			service.createIpPublic(entity);
 		}
 		
-		map.put("count", IPPublic.getCount());
+		map.put("count", service.countByIpPublic());
 		result.setMessage("Success");
 		result.setData(map);
 		
