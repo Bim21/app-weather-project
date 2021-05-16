@@ -22,8 +22,15 @@ public class IPPublic implements Serializable{
 	public IPPublic(String ipPublic) {
 		super();
 		this.ipPublic = ipPublic;
-		this.count++;
+		setCount(count++);
 	}
+	
+	public IPPublic() {
+		super();
+		
+	}
+	
+	
 
 	public String getIpPublic() {
 		return ipPublic;
@@ -31,6 +38,13 @@ public class IPPublic implements Serializable{
 
 	public void setIpPublic(String ipPublic) {
 		this.ipPublic = ipPublic;
+	}
+
+	public static int getCount() {
+		return count;
+	}
+	public static int setCount(int count) {
+		return count;
 	}
 
 }
