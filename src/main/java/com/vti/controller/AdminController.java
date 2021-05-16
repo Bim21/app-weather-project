@@ -2,27 +2,14 @@ package com.vti.controller;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.vti.entity.Admin;
 import com.vti.service.IAdminService;
 
@@ -44,10 +31,11 @@ public class AdminController {
 	 * @version: 1.0
 	 * @modifer: 
 	 * @modifer_date: 
+	 * return : map (json) 
 	 */
 	
 	@PostMapping(value="/login")
-	public Map<String,String> LoginAdmin(@RequestBody Admin admin){
+	public Map<String,String> loginAdmin(@RequestBody Admin admin){
 			
 			HashMap<String, String> map = new HashMap<>();
 			if(!service.isAdminExistsByEmailAndPassword(admin.getEmail(), admin.getPassword())) {

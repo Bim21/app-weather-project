@@ -13,6 +13,19 @@ import org.springframework.stereotype.Service;
 
 import com.vti.repository.IUserRepository;
 
+
+
+/**
+ * This class JwtRequestFilter.
+ * 
+ * @Description: .
+ * @author: Đinh Huy Khánh
+ * @create_date: 3/5/2021
+ * @version: 1.0
+ * @modifer: 
+ * @modifer_date: 
+ */	
+
 @Service("userDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 	
@@ -23,7 +36,19 @@ public class CustomUserDetailsService implements UserDetailsService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	
+
+	/**
+	 * This method is loadUserByUsername.
+	 * 
+	 * @Description: .
+	 * @author: Đinh Huy Khánh
+	 * @create_date: 3/5/2021
+	 * @version: 1.0
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : userDetail
+	 */	
+	/* để tìm user theo user name khi sử dụng token để xác thực */
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
 		com.vti.entity.User user = userRepository.findById(id);
