@@ -23,7 +23,7 @@ public class IPPublicController {
 	private IIPPublicService service;
 	
 	@PostMapping(value="/count")
-	public ResponseJwt isTotalView(@RequestBody IPPublic ip) {
+	public ResponseJwt isTotalViews(@RequestBody IPPublic ip) {
 		ResponseJwt result = new ResponseJwt();
 		Map<String, Object> map = new HashMap<>();
 		
