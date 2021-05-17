@@ -2,6 +2,10 @@ package com.vti.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,7 +40,7 @@ public class AdminController {
 	 */
 	
 	@PostMapping(value="/login")
-	public ResponseJwt loginAdmin(@RequestBody Admin admin){
+	public ResponseJwt loginAdmin(@RequestBody @Valid  Admin admin){
 			ResponseJwt result = new ResponseJwt();
 			HashMap<String, String> map = new HashMap<>();
 			
