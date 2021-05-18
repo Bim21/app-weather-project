@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 
@@ -17,10 +19,11 @@ public class Admin implements Serializable {
 	
 	@Id
 	@Column(name = "Email", nullable = false, unique = true, length = 100)
+	@Email
 	private String email;
 	
 	@Column(name = "`Password`", nullable = false, length = 255)
-	@Size(min=8)
+	@Size(min=8 , max=255)
 	private String password;
 
 	public String getEmail() {
