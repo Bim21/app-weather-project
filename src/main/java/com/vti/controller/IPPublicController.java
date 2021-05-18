@@ -16,17 +16,21 @@ import com.vti.entity.IPPublic;
 import com.vti.service.IIPPublicService;
 import com.vti.utils.ResponseJwt;
 
+import net.bytebuddy.asm.Advice.This;
+
 @RestController
 @RequestMapping(value = "api/v1/ip")
 @CrossOrigin("*")
 public class IPPublicController {
 
+	private static int count=0;
+	
 	@Autowired 
 	private IIPPublicService service;
 	
 	@GetMapping()
 	public ResponseJwt isTotalViews() throws UnknownHostException {
-		
+		setCount(++count);
 		ResponseJwt result = new ResponseJwt();
 		Map<String, Object> map = new HashMap<>();
 		InetAddress address = (InetAddress) InetAddress.getLocalHost();
@@ -39,9 +43,20 @@ public class IPPublicController {
 		}
 		
 		map.put("ip", ipAddress);
+		map.put("count",this.getCount());
 		result.setMessage("Success");
 		result.setData(map);
 		
 		return result;
 	}
+
+	public static int getCount() {
+		return count;
+	}
+
+	public static void setCount(int count) {
+		IPPublicController.count = count;
+	}
+	
+	
 }
