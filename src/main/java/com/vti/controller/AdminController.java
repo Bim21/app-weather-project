@@ -28,7 +28,7 @@ public class AdminController {
 	private IAdminService service;
 	
 	/**
-	 * This method is AdminExistsByEmailAndPassword
+	 * This method is loginAdmin
 	 * 
 	 * @Description: .
 	 * @author: Đinh Huy Khánh
@@ -36,7 +36,7 @@ public class AdminController {
 	 * @version: 1.0
 	 * @modifer: 
 	 * @modifer_date: 
-	 * return : map (json) 
+	 * return : result (json) 
 	 */
 	
 	@PostMapping(value="/login")

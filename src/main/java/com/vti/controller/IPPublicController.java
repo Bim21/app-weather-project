@@ -28,16 +28,27 @@ public class IPPublicController {
 	@Autowired 
 	private IIPPublicService service;
 	
+	/**
+	 * This method is TotalViews
+	 * 
+	 * @Description: .
+	 * @author: Đinh Huy Khánh
+	 * @create_date: 15/5/2021
+	 * @version: 1.0
+	 * @modifer: 
+	 * @modifer_date: 
+	 * return : result (json) 
+	 */
 	@GetMapping()
 	public ResponseJwt isTotalViews() throws UnknownHostException {
-		setCount(++count);
+		setCount(++count); // biến count tăng lên
 		ResponseJwt result = new ResponseJwt();
 		Map<String, Object> map = new HashMap<>();
 		InetAddress address = (InetAddress) InetAddress.getLocalHost();
 		
 		String ipAddress = address.getHostAddress();
 		
-		if(!service.isExistsByIpPublic(ipAddress)) {
+		if(!service.isExistsByIpPublic(ipAddress)) { // nếu ip này chưa tồn tại  thì lưu vào database
 			IPPublic entity = new IPPublic(ipAddress);
 			service.createIpPublic(entity);
 		}
