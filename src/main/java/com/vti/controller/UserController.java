@@ -24,17 +24,50 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	
+	/**
+	 * Get user by id
+	 * 
+	 * @Description: .
+	 * @author: Khuất Bá Tiến
+	 * @create_date: 
+	 * @version: 1
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : User information
+	 */	
 	@GetMapping(value = "id/{id}")
 	public ResponseEntity<?> getUserById(@PathVariable(name = "id") String id) {		
 		return new ResponseEntity<User>(userService.getUserById(id), HttpStatus.OK);
 	}
 	
+	/**
+	 * Check user exists
+	 * 
+	 * @Description: .
+	 * @author: Đinh Huy Khánh
+	 * @create_date: 
+	 * @version: 1
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : Boolean
+	 */	
 	@GetMapping(value = "/exists?id={id}")
 	public ResponseEntity<Boolean> isExistsUserById(@PathVariable(name="id") String id){
 		
 		return new ResponseEntity<Boolean>(userService.isExistsUserById(id),HttpStatus.OK);
 	}
 	
+	/**
+	 * Get all user
+	 * 
+	 * @Description: .
+	 * @author: Khuất Bá Tiến
+	 * @create_date: 
+	 * @version: 1
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : List user information
+	 */	
 	@GetMapping
 	public ResponseEntity<?> getAllUser(){	
 		List<User> entities = userService.getAllUsers();	

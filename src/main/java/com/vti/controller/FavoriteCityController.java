@@ -36,6 +36,17 @@ public class FavoriteCityController {
 	@Autowired
 	private ICityService cityService;
 	
+	/**
+	 * Get all favorite city
+	 * 
+	 * @Description: 
+	 * @author: Khuất Bá Tiến
+	 * @create_date: 
+	 * @version: 1
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : userId, cityId
+	 */
 	@GetMapping()
 	public ResponseEntity<?> getAllFavoriteCities() {
 
@@ -45,6 +56,17 @@ public class FavoriteCityController {
 		return new ResponseEntity<List<FavoriteCity>>(entities, HttpStatus.OK);
 	}
 	
+	/**
+	 * Get all favorite city by id
+	 * 
+	 * @Description: 
+	 * @author: Khuất Bá Tiến
+	 * @create_date: 
+	 * @version: 1
+	 * @modifer: 
+	 * @modifer_date: 
+	 * @return : userId, cityId
+	 */
 	@GetMapping(value = "userId/{id}")
 	public ResponseEntity<?> getAllFavoriteCities(@PathVariable(name = "id") String id) {
 
@@ -54,6 +76,16 @@ public class FavoriteCityController {
 		return new ResponseEntity<List<FavoriteCity>>(entities, HttpStatus.OK);
 	}
 	
+	/**
+	 * Create favorite city
+	 * 
+	 * @Description: 
+	 * @author: Khuất Bá Tiến
+	 * @create_date: 
+	 * @version: 1
+	 * @modifer: 
+	 * @modifer_date: 
+	 */
 	@PostMapping()
 	public String createFavoriteCity(@RequestBody FavoriteCityDTO dto) {
 
@@ -70,6 +102,16 @@ public class FavoriteCityController {
 
 	}
 	
+	/**
+	 * Delete favorite city
+	 * 
+	 * @Description: 
+	 * @author: Khuất Bá Tiến
+	 * @create_date: 
+	 * @version: 1
+	 * @modifer: 
+	 * @modifer_date: 
+	 */
 	@DeleteMapping(value = "delete/idUser={idUser},idCity={idCity}")
 	public ResponseEntity<?> deleteFavoriteCity(@PathVariable(name = "idUser") String idUser,@PathVariable Integer idCity) {
 		favoriteCityService.deleteFavoriteCity(idUser,idCity);
