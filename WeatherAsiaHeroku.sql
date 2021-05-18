@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS `User`
     `Email`			VARCHAR(100) NOT NULL UNIQUE KEY,
     `Address` 		NVARCHAR(255)    
 );
+ALTER TABLE  `User` ADD createDate DATETIME default NOW();
 
 CREATE TABLE IF NOT EXISTS `Admin`
 (
