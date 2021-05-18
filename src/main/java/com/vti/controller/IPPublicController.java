@@ -24,7 +24,7 @@ public class IPPublicController {
 	@Autowired 
 	private IIPPublicService service;
 	
-	@GetMapping(value="/count")
+	@GetMapping()
 	public ResponseJwt isTotalViews() throws UnknownHostException {
 		
 		ResponseJwt result = new ResponseJwt();
@@ -38,7 +38,7 @@ public class IPPublicController {
 			service.createIpPublic(entity);
 		}
 		
-		map.put("count", service.countByIpPublic());
+		map.put("ip", ipAddress);
 		result.setMessage("Success");
 		result.setData(map);
 		
