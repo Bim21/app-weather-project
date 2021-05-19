@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "IPPublic", catalog = "heroku_b127bd7a389e7b4")
+@Table(name = "IPPublic", catalog = "heroku_02daea0b415b4cd")
 public class IPPublic implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
