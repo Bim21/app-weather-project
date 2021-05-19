@@ -1,6 +1,7 @@
 package com.vti.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -8,6 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Table(name = "`User`", catalog = "heroku_b127bd7a389e7b4")
@@ -27,8 +32,23 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "`Address`", length = 255)
 	private String address;
 	
+	@Column(name = "CreateDate")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
+    private Date createDate;
+	
 	@OneToMany(mappedBy = "user")
 	private List<FavoriteCity> favoriteCities;
+
+	
+	
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
 
 	public String getId() {
 		return id;
@@ -82,7 +102,7 @@ private static final long serialVersionUID = 1L;
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address +
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address + ", createDate: "+createDate+
 				 "]";
 	}
 	

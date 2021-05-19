@@ -1,23 +1,22 @@
 package com.vti.controller;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.hibernate.validator.constraints.Length;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.vti.entity.Admin;
 import com.vti.service.IAdminService;
+import com.vti.utils.ResponseJwt;
 
 @RestController
 @RequestMapping(value="api/v1/admin")
@@ -29,7 +28,7 @@ public class AdminController {
 	private IAdminService service;
 	
 	/**
-	 * This method is AdminExistsByEmailAndPassword
+	 * This method is loginAdmin
 	 * 
 	 * @Description: .
 	 * @author: Đinh Huy Khánh
@@ -37,15 +36,25 @@ public class AdminController {
 	 * @version: 1.0
 	 * @modifer: 
 	 * @modifer_date: 
+	 * return : result (json) 
 	 */
 	
-	@GetMapping(value="/login/email={email}&password={password}")
-	public ResponseEntity<Boolean> isExistsAdminByEmailAndPassword(
-			@PathVariable(name="email") @NotBlank @Email String email, 
-			@PathVariable(name="password") @NotBlank @Size(min=8, max=255, message = "Password should have min 8 characters") String password){
-		
-		
-		return new ResponseEntity<Boolean>(service.isAdminExistsByEmailAndPassword(email, password), HttpStatus.OK);
+	@PostMapping(value="/login")
+	public ResponseJwt loginAdmin(@RequestBody @Valid  Admin admin){
+			ResponseJwt result = new ResponseJwt();
+			HashMap<String, String> map = new HashMap<>();
+			
+			if(!service.isAdminExistsByEmailAndPassword(admin.getEmail(), admin.getPassword())) {
+				map.put("email",admin.getEmail());
+				result.setData(map);
+				result.setMessage("Account does not exist");
+				return result;
+			}
+			
+			map.put("email",admin.getEmail());
+			result.setData(map);
+			result.setMessage("Success");
+			return result;
 	}
 	
 }

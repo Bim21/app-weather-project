@@ -19,6 +19,17 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
+
+/**
+ * This class JwtUtil.
+ * 
+ * @Description: .
+ * @author: Đinh Huy Khánh
+ * @create_date: 3/5/2021
+ * @version: 1.0
+ * @modifer: 
+ * @modifer_date: 
+ */	
 @Service
 public class JwtUtil implements Serializable {
 
@@ -29,25 +40,17 @@ public class JwtUtil implements Serializable {
 
 	    private static final long JWT_TOKEN_VALIDITY = 60 * 60;
 
-	    //    get username from jwt token
+	    /*   lấy tên người dùng từ mã thông báo jwt */
 	    public String extractUsername(String token) {
 	        return extractClaim(token, Claims::getSubject);
 	    }
 
-	    //    retrieve expiration date from jwt token
+	    /* lấy ngày hết hạn từ mã thông báo jwt */
 	    public Date extractExpiration(String token) {
 	        return extractClaim(token, Claims::getExpiration);
 	    }
 
-	    //    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
-//	        final Claims claims = extractAllClaims(token);
-//	        try {
-//	            return claimsResolver.apply(claims);
-//	        } catch (Exception e) {
-//	            logger.error(e.getMessage());
-//	        }
-//	        return null;
-//	    }
+
 	    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
 	        final Claims claims = extractAllClaims(token);
 	        try {
@@ -59,7 +62,7 @@ public class JwtUtil implements Serializable {
 	        }
 	    }
 
-	    //    for retrieving any information from token we will need the secret key
+	    // Khi muốn lấy bất kì thông tin gì ta cần 1 khóa bí mật
 	    private Claims extractAllClaims(String token) {
 	        try {
 //	            logger.info(Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody());
@@ -77,13 +80,13 @@ public class JwtUtil implements Serializable {
 	        }
 	        return null;
 	    }
-
-	    //    check if the token has expired
+	    
+	    // kiểm tra xem mã thông báo đã hết hạn hay chưa
 	    private Boolean isTokenExpired(String token) {
 	        return extractExpiration(token).before(new Date());
 	    }
 
-	    //    generate token for user
+	    //    tạo token cho người dùng
 	    public String generateToken(UserDetails userDetails) {
 	        Map<String, Object> claims = new HashMap<>();
 	        return createToken(claims, userDetails.getUsername());
