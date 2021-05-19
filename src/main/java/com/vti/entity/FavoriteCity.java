@@ -11,7 +11,7 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`FavouriteCity`", catalog = "heroku_b127bd7a389e7b4")
+@Table(name = "`FavouriteCity`", catalog = "heroku_02daea0b415b4cd")
 public class FavoriteCity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -48,6 +48,14 @@ public class FavoriteCity implements Serializable {
 //		return city.getId();
 //	}
 	
+	public String getCityName() {
+		return city.getName();
+	}
+	
+	public String getCityLable() {
+		return city.getLable();
+	}
+	
 	public void setCity(City city) {
 		this.city = city;
 	}
@@ -76,5 +84,12 @@ public class FavoriteCity implements Serializable {
 		this.favoriteCityId = favoriteCityId;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public String toString() {
+		return "FavoriteCity [userId=" + user.getId() + ", cityId=" + city.getId() + "cityName= "+city.getName()+"cityLabel: "+city.getLable()+ "]";
+	}
+>>>>>>> 4ba0fd96762950757c196f6fe11dbb2e1be43dcc
 	
 }
