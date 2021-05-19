@@ -48,9 +48,9 @@ public class FavoriteCity implements Serializable {
 //		return city.getId();
 //	}
 	
-	public String getCityName() {
-		return city.getName();
-	}
+//	public String getCityName() {
+//		return city.getName();
+//	}
 	
 	public String getCityLable() {
 		return city.getLable();
