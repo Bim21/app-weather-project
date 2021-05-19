@@ -44,13 +44,18 @@ public class FavoriteCity implements Serializable {
 //		return city;
 //	}
 
-	public int getCityId() {
-		return city.getId();
-	}
+//	public int getCityId() {
+//		return city.getId();
+//	}
 	
 	public void setCity(City city) {
 		this.city = city;
 	}
+	
+	public String getCityName() {
+		return city.getName();
+	}
+	
 
 	public FavoriteCity() {
 		
@@ -66,15 +71,10 @@ public class FavoriteCity implements Serializable {
 		this.user = user;
 		this.city = city;
 	}
-	
 
 	public FavoriteCity(FavoriteCityKey favoriteCityId) {
 		this.favoriteCityId = favoriteCityId;
 	}
 
-	@Override
-	public String toString() {
-		return "FavoriteCity [userId=" + user.getId() + ", cityId=" + city.getId() + "]";
-	}
 	
 }
