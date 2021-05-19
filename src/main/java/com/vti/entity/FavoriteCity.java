@@ -83,13 +83,10 @@ public class FavoriteCity implements Serializable {
 	public FavoriteCity(FavoriteCityKey favoriteCityId) {
 		this.favoriteCityId = favoriteCityId;
 	}
-
-<<<<<<< HEAD
-=======
 	@Override
 	public String toString() {
 		return "FavoriteCity [userId=" + user.getId() + ", cityId=" + city.getId() + "cityName= "+city.getName()+"cityLabel: "+city.getLable()+ "]";
 	}
->>>>>>> 4ba0fd96762950757c196f6fe11dbb2e1be43dcc
+
 	
 }
