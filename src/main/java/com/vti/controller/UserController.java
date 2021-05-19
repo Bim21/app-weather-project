@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.entity.City;
+import com.vti.entity.Filter;
 import com.vti.entity.User;
 import com.vti.service.IUserService;
 
@@ -64,13 +65,24 @@ public class UserController {
 	 * @author: Khuất Bá Tiến
 	 * @create_date: 
 	 * @version: 1
-	 * @modifer: 
-	 * @modifer_date: 
+	 * @modifer: Đinh Huy Khánh
+	 * @modifer_date: 19/05/2021
 	 * @return : List user information
 	 */	
+	/**
+	 * @modifer: Đinh Huy Khánh
+	 * @modifer_date: 19/05/2021
+	 * @edited_content :  thêm  tìm kiếm và phân trang và sắp xếp khi trả về danh sách user
+	 * @param : search?
+	 * @param: filter? ( page ?, pagesize?, type? ,field? )
+	 * page : page bao nhiêu 
+	 * pagesize : page được trả về bao nhiêu value
+	 * field :  cột muốn sắp xếp 
+	 * type : sắp xếp kiểu gì ( asc  || desc )
+	 * */
 	@GetMapping
-	public ResponseEntity<?> getAllUser(){	
-		List<User> entities = userService.getAllUsers();	
+	public ResponseEntity<?> getAllUser(String search, Filter filter){	
+		List<User> entities = userService.getAllUsers(search,filter);	
 		return new ResponseEntity<List<User>>(entities,HttpStatus.OK);
 	}
 	
