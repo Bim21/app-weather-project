@@ -15,7 +15,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "`User`", catalog = "heroku_b127bd7a389e7b4")
+@Table(name = "`User`", catalog = "heroku_02daea0b415b4cd")
 public class User implements Serializable {
 private static final long serialVersionUID = 1L;
 

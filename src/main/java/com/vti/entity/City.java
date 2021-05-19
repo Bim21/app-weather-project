@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`City`", catalog = "heroku_b127bd7a389e7b4")
+@Table(name = "`City`", catalog = "heroku_02daea0b415b4cd")
 public class City implements Serializable{
 
 	private static final long serialVersionUID = 1L;
