@@ -1,6 +1,7 @@
 package com.vti.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.vti.repository.IAdminRepository;
@@ -11,6 +12,9 @@ public class AdminService implements IAdminService{
 	
 	@Autowired
 	private IAdminRepository repository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	/**
 	 * This method is exists By Email And Password.
@@ -26,8 +30,8 @@ public class AdminService implements IAdminService{
 	 */
 	public boolean isAdminExistsByEmailAndPassword(String email, String password) {
 		// chuyển string password về sha256
-		String sha256hexPassword = org.apache.commons.codec.digest.DigestUtils.sha256Hex(password); 
-		return repository.existsByEmailAndPassword(email, sha256hexPassword);
+		String pswHash = passwordEncoder.encode(password);
+		return repository.existsByEmailAndPassword(email, pswHash);
 	}
 	
 	

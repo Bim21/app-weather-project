@@ -31,7 +31,7 @@ public class SocialFacebookController {
 	    private JwtUtil jwtUtil;
 
 	    @Autowired
-	    @Qualifier("userDetailsService")
+//	    @Qualifier("userDetailsService")
 	    private UserDetailsService  userDetailsService;
 	
 	    @Autowired 

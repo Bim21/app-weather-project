@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.vti.entity.Admin;
+import com.vti.repository.IAdminRepository;
 import com.vti.repository.IUserRepository;
 
 
@@ -35,6 +37,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private IAdminRepository adminDAO;
 
 
 	/**
@@ -50,12 +55,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */	
 	/* để tìm user theo user name khi sử dụng token để xác thực */
 	@Override
-	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-		com.vti.entity.User user = userRepository.findById(id);
-		if(Objects.isNull(user)) {
-			throw new UsernameNotFoundException(id +"not found");
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Admin admin = adminDAO.findByEmail(email);
+		if(Objects.isNull(admin)) {
+			throw new UsernameNotFoundException(email +"not found");
 		}
-		User userDetail = new org.springframework.security.core.userdetails.User(id,
+		User userDetail = new org.springframework.security.core.userdetails.User(email,
                 passwordEncoder.encode("facebook"),
                 new ArrayList<>());
         return userDetail;

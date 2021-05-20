@@ -8,4 +8,6 @@ import com.vti.entity.Admin;
 public interface IAdminRepository extends JpaRepository<Admin, String>, JpaSpecificationExecutor<Admin> {
 
 	public boolean existsByEmailAndPassword(String email, String password);
+	
+	Admin findByEmail(String email);
 }
