@@ -6,8 +6,10 @@ import com.vti.entity.FavoriteCityKey;
 import com.vti.entity.User;
 
 public class FavoriteCityDTO {
+	
 	private User user;
 	private City city;
+	
 	private String userId;
 	private int cityId;
 	private FavoriteCityKey favoriteCityKey;
