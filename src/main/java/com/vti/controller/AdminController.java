@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vti.entity.Admin;
+import com.vti.service.AdminService;
 import com.vti.service.IAdminService;
+import com.vti.utils.AdminForm;
 import com.vti.utils.CustomUserDetailsService;
 import com.vti.utils.JwtUtil;
 import com.vti.utils.ResponseJwt;
@@ -36,6 +38,9 @@ public class AdminController {
 	
 	@Autowired
 	private IAdminService service;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@Autowired
 	private AuthenticationManager authticationManager;
@@ -81,5 +86,13 @@ public class AdminController {
 			result.setMessage("Success");
 			return result;
 	}
+	
+	
+	@PostMapping(value="/created")
+	public String createAdmin(@RequestBody AdminForm form) {
+		return adminService.registerUser(form).toString();
+	}
+	
+	
 	
 }

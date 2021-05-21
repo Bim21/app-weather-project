@@ -82,7 +82,7 @@ public class UserController {
 	 * type : sắp xếp kiểu gì ( asc  || desc )
 	 * */
 	@GetMapping
-	@PreAuthorize("hasRole('USER')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ResponseEntity<?> getAllUser(String search, Filter filter){	
 		List<User> entities = userService.getAllUsers(search,filter);	
 		return new ResponseEntity<List<User>>(entities,HttpStatus.OK);

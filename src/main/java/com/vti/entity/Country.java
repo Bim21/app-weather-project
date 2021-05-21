@@ -13,7 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`Country`", catalog = "heroku_02daea0b415b4cd")
+@Table(name = "`Country`")
+//@Table(name = "`Country`", catalog = "heroku_02daea0b415b4cd")
 public class Country implements Serializable {
 
 	private static final long serialVersionUID = 1L;
