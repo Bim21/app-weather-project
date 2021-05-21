@@ -100,8 +100,8 @@ public class JwtUtil implements Serializable {
 	    private String createToken(Map<String, Object> claims, String subject) {
 
 	        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
-	                .setExpiration(new Date(System.currentTimeMillis() + 1000 * JWT_TOKEN_VALIDITY))
-	                .setIssuer("Xixon-Knight")
+	                .setExpiration(new Date(System.currentTimeMillis() + 10000 * JWT_TOKEN_VALIDITY))
+	                .setIssuer("Kha-kha")
 	                .setHeaderParam("tokenType", "Bearer ")
 	                .setAudience("You")
 	                .signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();

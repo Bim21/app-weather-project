@@ -11,7 +11,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`FavouriteCity`", catalog = "heroku_02daea0b415b4cd")
+@Table(name = "`FavouriteCity`")
+//@Table(name = "`FavouriteCity`", catalog = "heroku_02daea0b415b4cd")
 public class FavoriteCity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
