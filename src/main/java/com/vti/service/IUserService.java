@@ -12,4 +12,5 @@ public interface IUserService {
 	public boolean isExistsUserById(String id);
 	public void createUser(User user);
 	public List<User> getAllUsers(String search, Filter filter);
+	public long countIdByUser();
 }
