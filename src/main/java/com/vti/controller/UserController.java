@@ -1,6 +1,8 @@
 package com.vti.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ import com.vti.entity.City;
 import com.vti.entity.Filter;
 import com.vti.entity.User;
 import com.vti.service.IUserService;
+import com.vti.utils.ResponseJwt;
+
+import ch.qos.logback.core.pattern.color.MagentaCompositeConverter;
 
 
 @RestController
@@ -83,9 +88,16 @@ public class UserController {
 	 * */
 	@GetMapping
 //	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> getAllUser(String search, Filter filter){	
+	public ResponseJwt getAllUser(String search, Filter filter){	
 		List<User> entities = userService.getAllUsers(search,filter);	
-		return new ResponseEntity<List<User>>(entities,HttpStatus.OK);
+		ResponseJwt result = new ResponseJwt();
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("size", entities.size());
+		map.put("data", entities);
+		result.setData(map);
+		result.setMessage("Success");
+		
+		return result;
 	}
 	
 	
