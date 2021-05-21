@@ -88,17 +88,18 @@ public class UserController {
 	 * */
 	@GetMapping
 //	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseJwt getAllUser(String search, Filter filter){	
+	public ResponseEntity<?> getAllUser(String search, Filter filter){	
 		List<User> entities = userService.getAllUsers(search,filter);	
+		return new ResponseEntity<List<User>>(entities,HttpStatus.OK);
+	}
+	@GetMapping(value="/total")
+	public ResponseJwt isTotalUser() {
 		ResponseJwt result = new ResponseJwt();
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("size", entities.size());
-		map.put("data", entities);
-		result.setData(map);
-		result.setMessage("Success");
+		Map<String, Object> map = new HashMap<>();
 		
+		map.put("total", userService.countIdByUser());
+		result.setMessage("Success");
+		result.setData(map);
 		return result;
 	}
-	
-	
 }

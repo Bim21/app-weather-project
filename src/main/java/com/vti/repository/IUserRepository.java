@@ -13,7 +13,6 @@ public interface IUserRepository extends JpaRepository<User, Character>,JpaSpeci
 	
 	public boolean existsById(String id);
 	public User findById(String id);
-	
 	Optional<User> findByEmail(String email);
 
 	

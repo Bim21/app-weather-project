@@ -120,5 +120,10 @@ public class UserService implements IUserService {
 			
 		};
 	}
+	@Override
+	public long countIdByUser() {
+		// TODO Auto-generated method stub
+		return  userRepository.count();
+	}
 	
 }
