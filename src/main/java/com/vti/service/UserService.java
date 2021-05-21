@@ -116,8 +116,6 @@ public class UserService implements IUserService {
 				// TODO Auto-generated method stub
 				return criteriaBuilder.like(root.get(type), "%"+search+"%");
 			}
-
-			
 		};
 	}
 	@Override
