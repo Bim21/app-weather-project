@@ -92,6 +92,7 @@ public class UserController {
 		List<User> entities = userService.getAllUsers(search,filter);	
 		return new ResponseEntity<List<User>>(entities,HttpStatus.OK);
 	}
+	
 	@GetMapping(value="/total")
 	public ResponseJwt isTotalUser() {
 		ResponseJwt result = new ResponseJwt();
