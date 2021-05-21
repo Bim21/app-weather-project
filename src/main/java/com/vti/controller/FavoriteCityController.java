@@ -1,17 +1,12 @@
 package com.vti.controller;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-
-import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.social.InternalServerErrorException;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,11 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
-import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver;
 
-import com.sun.jdi.InternalException;
 import com.vti.dto.FavoriteCityDTO;
 import com.vti.entity.FavoriteCity;
 import com.vti.entity.FavoriteCityKey;
@@ -33,8 +24,6 @@ import com.vti.entity.Filter;
 import com.vti.service.ICityService;
 import com.vti.service.IFavoriteCityService;
 import com.vti.service.IUserService;
-
-import javassist.NotFoundException;
 
 
 @RestController
@@ -141,7 +130,6 @@ public class FavoriteCityController {
 		
 		try {
 			favoriteCityService.deleteFavoriteCity(idUser,idCity);
-
 		}
 		catch (EmptyResultDataAccessException exception) {			
 			return new ResponseEntity<String>("Không tìm thấy tài nguyên bạn yêu cầu, "

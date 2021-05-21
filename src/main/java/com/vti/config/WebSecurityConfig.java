@@ -59,13 +59,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 					"/api/v1/favoriteCities",
 					"/api/v1/favoriteCities/userId/{id}",
 					"/api/v1/favoriteCities/delete/idUser={idUser},idCity={idCity}",
-//					"/api/v1/users",
 					"/api/v1/admin/**",
 					"/api/v1/ip",
-					"/api/v1/count")
+					"/api/v1/count",
+					"/api/v1/users/exists?id={id}")
 		.permitAll()
 //		.antMatchers("/api/v1/admin/**").hasAnyRole("ROLE_ADMIN")
-		.antMatchers("/api/v1/users/**").hasAuthority("ROLE_ADMIN")
+		.antMatchers("/api/v1/users").hasAuthority("ROLE_ADMIN")
 //		.anyRequest().authenticated()
 		.and()
 		.sessionManagement()
