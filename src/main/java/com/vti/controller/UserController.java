@@ -8,20 +8,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.vti.entity.City;
 import com.vti.entity.Filter;
 import com.vti.entity.User;
 import com.vti.service.IUserService;
 import com.vti.utils.ResponseJwt;
-
-import ch.qos.logback.core.pattern.color.MagentaCompositeConverter;
 
 
 @RestController
@@ -88,9 +83,11 @@ public class UserController {
 	 * */
 	@GetMapping
 //	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public ResponseEntity<?> getAllUser(String search, Filter filter){	
-		List<User> entities = userService.getAllUsers(search,filter);	
-		return new ResponseEntity<List<User>>(entities,HttpStatus.OK);
+	public ResponseJwt getAllUser(String search, Filter filter){	
+		
+		ResponseJwt result = userService.getAllUsers(search,filter);
+		
+		return result;
 	}
 	
 	@GetMapping(value="/total")
