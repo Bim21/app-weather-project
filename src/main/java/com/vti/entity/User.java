@@ -27,7 +27,7 @@ private static final long serialVersionUID = 1L;
 	@Column(name = "`Name`", length = 100)
 	private String name;
 	
-	@Column(name = "Email", nullable = false, unique = true, length = 100)
+	@Column(name = "Email", nullable = true, unique = true, length = 100)
 	private String email;
 	
 	@Column(name = "`Address`", length = 255)
