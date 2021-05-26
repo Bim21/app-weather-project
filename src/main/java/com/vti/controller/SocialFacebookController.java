@@ -62,7 +62,11 @@ public class SocialFacebookController {
 		// lấy những thông tin api cần thiết mà facebook gửi về
 		com.vti.entity.User entity = new com.vti.entity.User();
 		entity.setId(user.getId());
-		entity.setEmail(user.getEmail());
+		if(user.getEmail() == null) {
+			entity.setEmail("nguoi dung dang ky bang sdt");
+		}else {
+			entity.setEmail(user.getEmail());			
+		}
 		entity.setName(user.getName());
 		
 		// nếu user không tồn tại thì lưu vào DB
