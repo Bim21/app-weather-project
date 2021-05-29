@@ -26,14 +26,14 @@ import com.vti.utils.TokenDTO;
 @RestController
 @CrossOrigin("*")
 public class SocialFacebookController {
+//
+//	    @Autowired
+//	    private JwtUtil jwtUtil;
 
-	    @Autowired
-	    private JwtUtil jwtUtil;
-
-	    @Autowired
-	    @Qualifier("userDetailsService")
-	    private UserDetailsService  userDetailsService;
-	
+//	    @Autowired
+////	    @Qualifier("userDetailsService")
+//	    private UserDetailsService  userDetailsService;
+//	
 	    @Autowired 
 	    private IUserService userService;
 	 
@@ -62,7 +62,11 @@ public class SocialFacebookController {
 		// lấy những thông tin api cần thiết mà facebook gửi về
 		com.vti.entity.User entity = new com.vti.entity.User();
 		entity.setId(user.getId());
-		entity.setEmail(user.getEmail());
+		if(user.getEmail() == null) {
+			entity.setEmail("nguoi dung dang ky bang sdt");
+		}else {
+			entity.setEmail(user.getEmail());			
+		}
 		entity.setName(user.getName());
 		
 		// nếu user không tồn tại thì lưu vào DB
@@ -73,8 +77,6 @@ public class SocialFacebookController {
 		/* điều kiên entity khác null thì tạo json và trả về FE ngược lại thì thông báo FE biết là đã thất bại */
 		if(Objects.nonNull(entity)) {
 			Map<String, Object> map = new HashMap<>();
-			String jwt = generateTokenFace(entity.getId()); // tạo token để sau này có thể dùng để xác thực khi call api
-			map.put("jwt", jwt);
 			map.put("data", entity);
 			result.setData(map);
 			result.setMessage("Success");
@@ -84,13 +86,13 @@ public class SocialFacebookController {
 		return result;
 	}
 	
-	
-	private String generateTokenFace(String id) {
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(id);
-		String jwt = jwtUtil.generateToken(userDetails);
-		return jwt;
-	}
-	
+//	
+//	private String generateTokenFace(String id) {
+//		final UserDetails userDetails = userDetailsService.loadUserByUsername(id);
+//		String jwt = jwtUtil.generateToken(userDetails);
+//		return jwt;
+//	}
+//	
 	
 	
 	

@@ -1,6 +1,8 @@
 package com.vti.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.vti.entity.City;
 import com.vti.entity.Filter;
 import com.vti.entity.User;
 import com.vti.service.IUserService;
+import com.vti.utils.ResponseJwt;
 
 
 @RestController
@@ -81,10 +82,22 @@ public class UserController {
 	 * type : sắp xếp kiểu gì ( asc  || desc )
 	 * */
 	@GetMapping
-	public ResponseEntity<?> getAllUser(String search, Filter filter){	
-		List<User> entities = userService.getAllUsers(search,filter);	
-		return new ResponseEntity<List<User>>(entities,HttpStatus.OK);
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public ResponseJwt getAllUser(String search, Filter filter){	
+		
+		ResponseJwt result = userService.getAllUsers(search,filter);
+		
+		return result;
 	}
 	
-	
+	@GetMapping(value="/total")
+	public ResponseJwt isTotalUser() {
+		ResponseJwt result = new ResponseJwt();
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("total", userService.countIdByUser());
+		result.setMessage("Success");
+		result.setData(map);
+		return result;
+	}
 }

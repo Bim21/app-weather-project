@@ -1,8 +1,8 @@
 package com.vti.service;
 
+import java.util.HashMap;
 import java.util.List;
 
-import javax.naming.directory.SearchControls;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
 import com.vti.entity.Filter;
 import com.vti.entity.User;
 import com.vti.repository.IUserRepository;
+import com.vti.utils.ResponseJwt;
 
 @Service
 public class UserService implements IUserService {
 	
 	@Autowired
-	private IUserRepository userRepository;
-	
+	private  IUserRepository userRepository;
 	
 	@Override
 	public User getUserById(String id) {
@@ -88,8 +88,17 @@ public class UserService implements IUserService {
 	 * */
 	
 	@Override
-	public List<User> getAllUsers(String search, Filter filter) {
+	public ResponseJwt getAllUsers(String search, Filter filter) {
 		Specification<User> where = null;
+		HashMap<String, Object> map = new HashMap<>();
+		ResponseJwt result = new ResponseJwt();
+		int totalPages = 0;
+		int totalUsers = (int) userRepository.count();
+		
+		if(filter.getPage() <0 || filter.getPageSize()<=0 ) {
+			result.setMessage("pageSize phải lớn hơn 0 và page không âm !");
+			return result;
+		}
 		
 		if(search != null && search != "") 
 		{
@@ -104,7 +113,18 @@ public class UserService implements IUserService {
 			pageable=PageRequest.of(filter.getPage(), filter.getPageSize());
 		}
 		
-		return  (List<User>) userRepository.findAll(where,pageable).toList();
+		List<User>  users = userRepository.findAll(where,pageable).toList();
+		totalPages = (int) ((totalUsers-1)/filter.getPageSize() +1);
+		
+		
+		map.put("totalPages", totalPages);
+		map.put("totalUsers", totalUsers);
+		map.put("list", users);
+		
+		result.setMessage("Success");
+		result.setData(map);
+		
+		return  result;
 	}
 	
 	
@@ -116,9 +136,12 @@ public class UserService implements IUserService {
 				// TODO Auto-generated method stub
 				return criteriaBuilder.like(root.get(type), "%"+search+"%");
 			}
-
-			
 		};
+	}
+	@Override
+	public long countIdByUser() {
+		// TODO Auto-generated method stub
+		return  userRepository.count();
 	}
 	
 }

@@ -11,7 +11,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "`FavouriteCity`", catalog = "heroku_02daea0b415b4cd")
+@Table(name = "`FavouriteCity`")
+//@Table(name = "`FavouriteCity`", catalog = "heroku_02daea0b415b4cd")
 public class FavoriteCity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -32,25 +33,25 @@ public class FavoriteCity implements Serializable {
     private City city;
 
 
-	public String getUserId() {
-		return user.getId();
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-//	public City getCity() {
-//		return city;
+//	public String getUserId() {
+//		return user.getId();
 //	}
-
-	public int getCityId() {
-		return city.getId();
-	}
+//
+//	public void setUser(User user) {
+//		this.user = user;
+//	}
 	
-	public String getCityName() {
-		return city.getName();
+	public int getCountryId() {
+		return city.getCountryId();
 	}
+
+//	public int getCityId() {
+//		return city.getId();
+//	}
+	
+//	public String getCityName() {
+//		return city.getName();
+//	}
 	
 	public String getCityLable() {
 		return city.getLable();
@@ -59,6 +60,11 @@ public class FavoriteCity implements Serializable {
 	public void setCity(City city) {
 		this.city = city;
 	}
+	
+	public String getCityName() {
+		return city.getName();
+	}
+	
 
 	public FavoriteCity() {
 		
@@ -74,15 +80,14 @@ public class FavoriteCity implements Serializable {
 		this.user = user;
 		this.city = city;
 	}
-	
 
 	public FavoriteCity(FavoriteCityKey favoriteCityId) {
 		this.favoriteCityId = favoriteCityId;
 	}
-
 	@Override
 	public String toString() {
-		return "FavoriteCity [userId=" + user.getId() + ", cityId=" + city.getId() + "cityName= "+city.getName()+"cityLabel: "+city.getLable()+ "]";
+		return "FavoriteCity [cityId=" + city.getId() + "cityName= "+city.getName()+"cityLabel: "+city.getLable()+"countryId: "+city.getCountryId()+ "]";
 	}
+
 	
 }

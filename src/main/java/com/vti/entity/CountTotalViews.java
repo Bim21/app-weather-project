@@ -8,7 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CountTotalViews", catalog = "heroku_02daea0b415b4cd")
+@Table(name = "CountTotalViews")
+//@Table(name = "CountTotalViews", catalog = "heroku_02daea0b415b4cd")
 public class CountTotalViews implements Serializable{
 
 private static final long serialVersionUID = 1L;

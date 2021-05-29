@@ -9,6 +9,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -42,7 +43,7 @@ public class IPPublicController {
 	 * @modifer_date: 
 	 * return : result (json) 
 	 */
-	@GetMapping()
+	@PutMapping()
 	public ResponseJwt isTotalViews() throws UnknownHostException {
 
 		int count = serviceCount.getCount();  // lấy giá trị count đã được lưu
