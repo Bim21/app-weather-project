@@ -34,7 +34,7 @@ private static final long serialVersionUID = 1L;
 	
 	@Column(name = "CreateDate")
     @Temporal(TemporalType.TIMESTAMP)
-    @CreationTimestamp
+    @CreationTimestam
     private Date createDate;
 	
 	@OneToMany(mappedBy = "user")
