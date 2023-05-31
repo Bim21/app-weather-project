@@ -63,16 +63,16 @@ public class UserController {
 	 * Get all user
 	 * 
 	 * @Description: .
-	 * @author: Khuất Bá Tiến
+	 * @author: Nguyễn Văn Chiến
 	 * @create_date: 
 	 * @version: 1
-	 * @modifer: Đinh Huy Khánh
-	 * @modifer_date: 19/05/2021
+	 * @modifer: Nguyễn Văn Chiến
+	 * @modifer_date: 18/05/2022
 	 * @return : List user information
 	 */	
 	/**
-	 * @modifer: Đinh Huy Khánh
-	 * @modifer_date: 19/05/2021
+	 * @modifer: Nguyễn Văn Chiến
+	 * @modifer_date: 18/05/2022
 	 * @edited_content :  thêm  tìm kiếm và phân trang và sắp xếp khi trả về danh sách user
 	 * @param : search?
 	 * @param: filter? ( page ?, pagesize?, type? ,field? )

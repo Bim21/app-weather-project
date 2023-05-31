@@ -24,7 +24,7 @@ public class CountryController {
 	 * Get country by id
 	 * 
 	 * @Description: 
-	 * @author: Khuất Bá Tiến
+	 * @author: Nguyễn Văn Chiến
 	 * @create_date: 
 	 * @version: 1
 	 * @modifer: 
@@ -40,7 +40,7 @@ public class CountryController {
 	 * Get country by name
 	 * 
 	 * @Description: 
-	 * @author: Khuất Bá Tiến
+	 * @author: Nguyễn Văn Chiến
 	 * @create_date: 
 	 * @version: 1
 	 * @modifer: 
@@ -56,7 +56,7 @@ public class CountryController {
 	 * Get capital of country by name country
 	 * 
 	 * @Description: 
-	 * @author: Khuất Bá Tiến
+	 * @author: Nguyễn Văn Chiến
 	 * @create_date: 
 	 * @version: 1
 	 * @modifer: 

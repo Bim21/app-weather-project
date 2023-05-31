@@ -36,9 +36,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter  {
 
 	    @Override
 	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-	        // configure AuthenticationManager so that it knows from where to load
-	        // user for matching credentials
-	        // Use BCryptPasswordEncoder
 	        auth.userDetailsService(userDetailsService);
 	    }
 	    
