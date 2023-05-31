@@ -16,7 +16,7 @@ const Now = ({ propsData }: any) => {
                   Thời tiết hiện tại
                 </h2>
                 <p className="cur-con-weather-card__subtitle">
-                  {propsData.location.localtime}
+                  {propsData.location.localtime.name}
                 </p>
               </div>
               <div className="d-flex">
